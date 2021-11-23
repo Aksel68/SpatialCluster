@@ -1,0 +1,16 @@
+path {
+    fill: none;
+    stroke: black;
+    stroke-opacity: 0.8;
+    stroke-width: 0.3px;
+}
+
+circle {
+    fill: #69b3a2;
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+circle:hover {
+    fill: #69b3a2;
+}
