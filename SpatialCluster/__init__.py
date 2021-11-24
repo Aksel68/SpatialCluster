@@ -1,1 +1,8 @@
-from DMoN import IncrementalCOOMatrix, convert_scipy_sparse_to_sparse_tensor, build_dmon, normalize_graph
+"""
+Init file for the SpatialCluster library.
+"""
+
+from SpatialCluster.core import DMoN_Clustering, visualize_map_sample
+
+version_info = (0, 0, 8)
+__version__ = ".".join([str(x) for x in version_info])

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '0.0.3'
+VERSION = '0.0.8'
 DESCRIPTION = 'Spatial cluster package'
 
 # Setting up
@@ -13,7 +13,7 @@ setup(
     author_email="<axel.reyes@sansano.usm.cl>",
     description=DESCRIPTION,
     packages=find_packages(),
-    install_requires=['tensorflow','scipy','numpy'],
+    install_requires=['tensorflow','scipy','numpy','matplotlib','folium'],
     url="https://github.com/AxlKings/SpatialCluster",
     keywords='python spatial urban cluster',
     classifiers=[

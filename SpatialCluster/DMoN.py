@@ -2,6 +2,7 @@ import tensorflow.compat.v2 as tf
 import array
 import scipy.sparse as sp
 import numpy as np
+from scipy import spatial
 
 
 class DMoN(tf.keras.layers.Layer):
@@ -427,3 +428,7 @@ class IncrementalCOOMatrix(object):
         return len(self.data)
 
 # -----------------------------------------------------------------------------
+
+
+
+
