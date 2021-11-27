@@ -2,7 +2,7 @@ import tensorflow.compat.v2 as tf
 import array
 import scipy.sparse as sp
 import numpy as np
-from scipy import spatial
+from sklearn.metrics import cluster
 
 
 class DMoN(tf.keras.layers.Layer):

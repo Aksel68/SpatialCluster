@@ -1,4 +1,4 @@
-from DMoN import IncrementalCOOMatrix, convert_scipy_sparse_to_sparse_tensor, build_dmon, normalize_graph
+from SpatialCluster.methods.DMoN import IncrementalCOOMatrix, convert_scipy_sparse_to_sparse_tensor, build_dmon, normalize_graph
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 

@@ -7,7 +7,7 @@ from pathlib import Path
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
-VERSION = '0.0.9'
+VERSION = '0.0.13'
 DESCRIPTION = 'Spatial cluster package'
 
 # Setting up
@@ -20,7 +20,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=find_packages(),
-    install_requires=['tensorflow','scipy','numpy','matplotlib','folium'],
+    install_requires=['sklearn','tensorflow','scipy','numpy','matplotlib','folium'],
     url="https://github.com/AxlKings/SpatialCluster",
     keywords='python spatial urban cluster',
     license='MIT',
