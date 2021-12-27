@@ -1,4 +1,6 @@
 from SpatialCluster.methods.DMoN import IncrementalCOOMatrix, convert_scipy_sparse_to_sparse_tensor, build_dmon, normalize_graph
+from SpatialCluster.methods.functions import get_areas
+from SpatialCluster.preprocess import adjacencyMatrix
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
@@ -16,19 +18,6 @@ from folium import Map
 from SpatialCluster.constants import COLORS
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-
-def get_areas(clusters, points):
-    num_points = len(points)
-    areas_to_points = dict()
-    for i in range(0,num_points):
-        area = int(clusters[i])
-        # print(type(area))
-        if area in areas_to_points:
-            areas_to_points[area].append(points[i])
-        else:
-            areas_to_points[area] = [points[i]]
-
-    return areas_to_points
 
 
 """
@@ -57,7 +46,8 @@ def DMoN_Clustering(features_X, features_position, r_max = 0.00034, n_clusters =
     X = np.asmatrix(X) # feature matrix
 
     # --------------------------------------------------------------------------
-    
+    points = list(zip(features_position.lon, features_position.lat))
+    """
     data = list(zip(features_position.lon, features_position.lat))
     tree = spatial.KDTree(data = data, leafsize = 10)
     points = list(zip(features_position.lon, features_position.lat))
@@ -79,6 +69,8 @@ def DMoN_Clustering(features_X, features_position, r_max = 0.00034, n_clusters =
 
     A = mat.tocoo() # adjacency matrix
     A = A.tocsr()
+    """
+    A = adjacencyMatrix(features_position)
     n_nodes = A.shape[0]
     feature_size = X.shape[1]
 
