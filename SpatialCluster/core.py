@@ -42,7 +42,12 @@ areas_to_points:    (dict) Dictionary with the cluster id as keys and a list of 
 def DMoN_Clustering(features_X, features_position, r_max = 0.00034, n_clusters = 4, reg = 1, dropout = 0.0, num_epochs = 500):
     X = features_X.to_numpy(dtype=float)
     x_min, x_max = np.min(X, axis=0), np.max(X, axis=0)
-    X = (X - x_min)/(x_max - x_min)
+    try:
+        X = (X - x_min)/(x_max - x_min)
+    except RuntimeWarning:
+        X = (X - x_min)/(x_max - x_min)
+        print("--------------------Debug------------------------")
+        print(f"X:{X}\nx_min:{x_min}\nx_max:{x_max}")
     X = np.asmatrix(X) # feature matrix
 
     # --------------------------------------------------------------------------
@@ -134,3 +139,8 @@ def visualize_map_sample(areas_to_points, clusters, min_supp, features, max_samp
                             color=colors_to_use[index], radius=10).add_to(hmap)
             
     return hmap
+
+    """
+    Dejar matriz implicita no más
+    Bag of parameters
+    """

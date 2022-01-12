@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy import spatial
 
-def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], max_neighbors_per_radio=[200, 500, 1000], keep_original_value=True):
+def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], max_neighbors_per_radio=[200, 500, 1000], keep_original_value=True, leafsize=10):
 
     # Variables en anillos concentricos.
     max_radio = [0.00014, 0.00024, 0.00034]
@@ -18,7 +18,7 @@ def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], 
     assert len(max_radio) == len(max_neighbors_per_radio)
 
     pts = np.array(list(zip(features_position.lon, features_position.lat)))
-    tree = spatial.KDTree(data=pts, leafsize=10)
+    tree = spatial.KDTree(data=pts, leafsize=leafsize)
     final_features_df = pd.DataFrame()
     
     if keep_original_value:
@@ -36,7 +36,7 @@ def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], 
             if len(idxs) == 1: 
                 nearby_points = [0]
             else:
-                temporal_tree = spatial.KDTree(data=pts[idxs], leafsize=10)
+                temporal_tree = spatial.KDTree(data=pts[idxs], leafsize=leafsize)
                 k_length = min(k, len(idxs))            # Conseguir los K puntos más cercanos dentro de ese radio
                 nearby_points = temporal_tree.query(pts[point], k = k_length)[1] 
             
@@ -52,3 +52,10 @@ def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], 
         
     features_X = final_features_df
     return features_X
+
+
+"""
+Revisar promedio de vecinos para los anillos
+Decidir si usar metros o no (ahora está en grados ?)
+
+"""

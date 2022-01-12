@@ -2,7 +2,7 @@ from SpatialCluster.methods.DMoN import IncrementalCOOMatrix
 from scipy import spatial
 import numpy as np
 
-def adjacencyMatrix(features_position, r_max = 0.00034):
+def adjacencyMatrix(features_position, r_max = 0.00034, leafsize = 10, k = 2):
     points = list(zip(features_position.lon, features_position.lat))
 
     # --------------------------------------------------------------------------
@@ -11,9 +11,9 @@ def adjacencyMatrix(features_position, r_max = 0.00034):
     mat = IncrementalCOOMatrix(shape, np.int64)
 
     data = list(zip(features_position.lon, features_position.lat))
-    tree = spatial.KDTree(data = data, leafsize = 10)
+    tree = spatial.KDTree(data = data, leafsize = leafsize)
     ball_points = tree.query_ball_point(points, r_max)
-    answers = tree.query(points, k = 2)[1]
+    answers = tree.query(points, k = k)[1]
 
     for x in range(len(ball_points)):
         idxs = list(ball_points[x])
