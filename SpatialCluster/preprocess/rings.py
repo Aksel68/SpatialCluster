@@ -1,19 +1,17 @@
 import numpy as np
 import pandas as pd
 from scipy import spatial
+from SpatialCluster.utils.data_format import data_format, position_data_format
 
 def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], max_neighbors_per_radio=[200, 500, 1000], keep_original_value=True, leafsize=10):
-
-    # Variables en anillos concentricos.
-    max_radio = [0.00014, 0.00024, 0.00034]
-    max_neighbors_per_radio = [200, 500, 1000]
 
     """
     El algoritmo toma todos los puntos dentro de un radio máximo.
     Luego, toma los K vecinos más cercanos a cada pundo donde K
     está definido según "max_neighbors_per_radio".
     """
-
+    features_X = data_format(features_X)
+    features_position = position_data_format(features_position)
     # Verificar que ambas listas sean de largo igual
     assert len(max_radio) == len(max_neighbors_per_radio)
 

@@ -1,8 +1,10 @@
-from SpatialCluster.methods.DMoN import IncrementalCOOMatrix
+from SpatialCluster.methods.DMoN_core import IncrementalCOOMatrix
+from SpatialCluster.utils.data_format import position_data_format
 from scipy import spatial
 import numpy as np
 
 def adjacencyMatrix(features_position, r_max = 0.00034, leafsize = 10, k = 2):
+    features_position = position_data_format(features_position)
     points = list(zip(features_position.lon, features_position.lat))
 
     # --------------------------------------------------------------------------
