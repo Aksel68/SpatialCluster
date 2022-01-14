@@ -1,4 +1,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+import matplotlib.pyplot as plt
+import matplotlib.colors as cl
+import folium
+from folium import Map
+import random
 
 def visualize_map_sample(areas_to_points, min_supp, max_samples_per_clusters):
     COLORS_9_SET = [plt.cm.Set1(i) for i in range(10)]
