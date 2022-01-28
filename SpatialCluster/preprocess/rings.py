@@ -23,24 +23,28 @@ def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], 
         final_features_df = features_X.copy()
 
     for i in range(len(max_radio)):
-        print(f'Looking for the nearest neighbors. Radio: {max_radio[i]}')
+        #print(f'Looking for the nearest neighbors. Radio: {max_radio[i]}')
         k = max_neighbors_per_radio[i]
-        ball_points = tree.query_ball_point(pts, max_radio[i])
+        #ball_points = tree.query_ball_point(pts, max_radio[i])
+        ball_points = tree.query_ball_tree(tree, max_radio[i])
+        #print("ball_points:", ball_points)
         features_array = [ [] for _ in range(len(features_X.columns)) ]
-
+        #print("features_X shape:", features_X.shape)
+        #print("features_position shape:", features_position.shape)
         for point in range(len(ball_points)):               # Para cada punto
             idxs = np.array(ball_points[point])                 # Solo consigo puntos con cierto radio
+            #print("idxs:", idxs)
             temporal_tree = spatial.cKDTree(data=pts[idxs], leafsize=leafsize)
             k_length = min(k, len(idxs))            # Conseguir los K puntos más cercanos dentro de ese radio
             distances, nearby_points = temporal_tree.query(pts[point], k = k_length)
             distances += smoothing
             if(normalize):
                 distances = distances/np.linalg.norm(distances)
-            
+            #print("nearby_points:", nearby_points)
             indexs = idxs[nearby_points]
-
+            #print("Indexs:", indexs)
             for f_index, feature in enumerate(features_X.columns):
-                subset_feature = features_X.loc[indexs, :][feature]/distances
+                subset_feature = features_X.iloc[indexs][feature]/distances
                 mean_feature = subset_feature.mean()
                 features_array[f_index].append(mean_feature) 
         
