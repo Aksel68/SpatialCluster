@@ -3,7 +3,7 @@ import pandas as pd
 from scipy import spatial
 from SpatialCluster.utils.data_format import data_format, position_data_format
 
-def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], max_neighbors_per_radio=[200, 500, 1000], keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10):
+def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], max_neighbors_per_radio=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10):
 
     """
     El algoritmo toma todos los puntos dentro de un radio máximo.
@@ -44,7 +44,10 @@ def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], 
             indexs = idxs[nearby_points]
             #print("Indexs:", indexs)
             for f_index, feature in enumerate(features_X.columns):
-                subset_feature = features_X.iloc[indexs][feature]/distances
+                if weight_mode == "Simple":
+                    subset_feature = features_X.iloc[indexs][feature]
+                elif weight_mode == "Distance Inverse":
+                    subset_feature = features_X.iloc[indexs][feature]/distances
                 mean_feature = subset_feature.mean()
                 features_array[f_index].append(mean_feature) 
         
