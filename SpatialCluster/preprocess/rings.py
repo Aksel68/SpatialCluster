@@ -3,46 +3,40 @@ import pandas as pd
 from scipy import spatial
 from SpatialCluster.utils.data_format import data_format, position_data_format
 
-def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], max_neighbors_per_radio=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10):
+def rings(features_X, features_position, max_radio=[200, 300, 400], max_neighbors_per_radio=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10):
 
     """
     El algoritmo toma todos los puntos dentro de un radio máximo.
     Luego, toma los K vecinos más cercanos a cada pundo donde K
     está definido según "max_neighbors_per_radio".
     """
+    meter_to_degree_equivalence = 9.090909091e-6
+    max_radio = np.array(max_radio)*meter_to_degree_equivalence # Se transforma de metros a grados
     features_X = data_format(features_X)
     features_position = position_data_format(features_position)
     # Verificar que ambas listas sean de largo igual
     assert len(max_radio) == len(max_neighbors_per_radio)
 
     pts = np.array(list(zip(features_position.lon, features_position.lat)))
-    tree = spatial.cKDTree(data=pts, leafsize=leafsize)
+    tree = spatial.KDTree(data=pts, leafsize=leafsize)
     final_features_df = pd.DataFrame()
-    
+
     if keep_original_value:
         final_features_df = features_X.copy()
-
-    for i in range(len(max_radio)):
-        #print(f'Looking for the nearest neighbors. Radio: {max_radio[i]}')
+    len_features = len(features_X.columns)
+    for i, r in enumerate(max_radio):
         k = max_neighbors_per_radio[i]
-        #ball_points = tree.query_ball_point(pts, max_radio[i])
-        ball_points = tree.query_ball_tree(tree, max_radio[i])
-        #print("ball_points:", ball_points)
-        features_array = [ [] for _ in range(len(features_X.columns)) ]
-        #print("features_X shape:", features_X.shape)
-        #print("features_position shape:", features_position.shape)
-        for point in range(len(ball_points)):               # Para cada punto
-            idxs = np.array(ball_points[point])                 # Solo consigo puntos con cierto radio
-            #print("idxs:", idxs)
-            temporal_tree = spatial.cKDTree(data=pts[idxs], leafsize=leafsize)
-            k_length = min(k, len(idxs))            # Conseguir los K puntos más cercanos dentro de ese radio
-            distances, nearby_points = temporal_tree.query(pts[point], k = k_length)
-            distances += smoothing
+        nearest_neighbours = tree.query_ball_tree(tree, r)
+        features_array = [ [] for _ in range(len_features)]
+        for j, neighbourhood in enumerate(nearest_neighbours): # Para cada punto
+            neighbourhood = np.array(neighbourhood) # Saco los vecinos dentro del radio r
+            temporal_tree = spatial.KDTree(data=pts[neighbourhood], leafsize=leafsize)
+            k_length = min(k, len(neighbourhood)) # Conseguir los K puntos más cercanos dentro de ese radio
+            distances, nearby_points = temporal_tree.query(pts[j], k = k_length)
+            distances += smoothing # Tal vez simplemente eliminar el primer elemento que es el punto mismo
             if(normalize):
                 distances = distances/np.linalg.norm(distances)
-            #print("nearby_points:", nearby_points)
-            indexs = idxs[nearby_points]
-            #print("Indexs:", indexs)
+            indexs = neighbourhood[nearby_points]
             for f_index, feature in enumerate(features_X.columns):
                 if weight_mode == "Simple":
                     subset_feature = features_X.iloc[indexs][feature]
@@ -53,7 +47,6 @@ def rings(features_X, features_position, max_radio=[0.00014, 0.00024, 0.00034], 
         
         for f_index, feature in enumerate(features_X.columns):
             final_features_df[f"{feature}_{i}"] = features_array[f_index]
-        
     features_X = final_features_df
     return features_X
 

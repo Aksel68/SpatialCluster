@@ -10,13 +10,13 @@ def AMI(clustering_1, clustering_2):
     clustering_2 = numpy_data_format(clustering_2)
     return normalized_mutual_info_score(clustering_1, clustering_2)
 
-def AMI_matrix(clusterings, plot=True):
+def AMI_matrix(clusterings, plot=True, figsize = (10,10), linewidth=1):
     clusterings = data_format(clusterings)
     NMI_array = []
-    for cluster_1 in clusterings.columns:
-        for cluster_2 in clusterings.columns:
-            if cluster_1 == cluster_2:
-                continue
+    len_columns = len(clusterings.columns)
+    for i, cluster_1 in enumerate(clusterings.columns): 
+        for j in range(i+1, len_columns):
+            cluster_2 = clusterings.columns[j]
             df_cluster_1 = clusterings[cluster_1]
             df_cluster_2 = clusterings[cluster_2]
             NMI = normalized_mutual_info_score(df_cluster_1, df_cluster_2)
@@ -24,13 +24,13 @@ def AMI_matrix(clusterings, plot=True):
             NMI_df = pd.DataFrame(NMI_array)
             NMI_df_pivot = NMI_df.pivot(index=0, columns=1, values=2,).fillna(0)
     if(plot):
-        plt.figure(figsize = (10,10))
+        plt.figure(figsize = figsize)
         mask = np.zeros_like(NMI_df_pivot)
         mask[np.triu_indices_from(mask)] = True
         g = sns.heatmap(
             NMI_df_pivot, 
             cmap='OrRd',
-            linewidth=1,
+            linewidth=linewidth,
             mask=mask,
             annot=True, fmt="0.2f")
         g.set_title('Normalized Mutual Info')

@@ -1,6 +1,6 @@
 import tensorflow.compat.v2 as tf
 import array
-import scipy.sparse as sp
+import scipy as sp
 import numpy as np
 from sklearn.metrics import cluster
 
@@ -295,19 +295,19 @@ def normalize_graph(graph,
         A scipy sparse matrix containing the normalized version of the input graph.
     """
     if add_self_loops:
-        graph = graph + sp.identity(graph.shape[0])
+        graph = graph + sp.sparse.identity(graph.shape[0])
     degree = np.squeeze(np.asarray(graph.sum(axis=1)))
     if normalized:
         with np.errstate(divide='ignore'):
             inverse_sqrt_degree = 1. / np.sqrt(degree)
         inverse_sqrt_degree[inverse_sqrt_degree == np.inf] = 0
-        inverse_sqrt_degree = sp.diags(inverse_sqrt_degree)
+        inverse_sqrt_degree = sp.sparse.diags(inverse_sqrt_degree)
         return inverse_sqrt_degree @ graph @ inverse_sqrt_degree
     else:
         with np.errstate(divide='ignore'):
             inverse_degree = 1. / degree
         inverse_degree[inverse_degree == np.inf] = 0
-        inverse_degree = sp.diags(inverse_degree)
+        inverse_degree = sp.sparse.diags(inverse_degree)
         return inverse_degree @ graph
 
 # -----------------------------------------------------------------------------
@@ -325,11 +325,11 @@ def load_npz(
     """
     with np.load(open(filename, 'rb'), allow_pickle=True) as loader:
         loader = dict(loader)
-        adjacency = sp.csr_matrix(
+        adjacency = sp.sparse.csr_matrix(
             (loader['adj_data'], loader['adj_indices'], loader['adj_indptr']),
             shape=loader['adj_shape'])
 
-        features = sp.csr_matrix(
+        features = sp.sparse.csr_matrix(
             (loader['feature_data'], loader['feature_indices'],
             loader['feature_indptr']),
             shape=loader['feature_shape'])
@@ -383,52 +383,3 @@ def build_dmon(input_features,
         outputs=[pool, pool_assignment])
 
 # -----------------------------------------------------------------------------
-
-
-class IncrementalCOOMatrix(object):
-
-    def __init__(self, shape, dtype):
-        if dtype is np.int32:
-            type_flag = 'i'
-        elif dtype is np.int64:
-            type_flag = 'l'
-        elif dtype is np.float32:
-            type_flag = 'f'
-        elif dtype is np.float64:
-            type_flag = 'd'
-        else:
-            raise Exception('Dtype not supported.')
-
-        self.dtype = dtype
-        self.shape = shape
-
-        self.rows = array.array('i')
-        self.cols = array.array('i')
-        self.data = array.array(type_flag)
-
-    def append(self, i, j, v):
-        m, n = self.shape
-        if (i >= m or j >= n):
-            raise Exception('Index out of bounds')
-
-        self.rows.append(i)
-        self.cols.append(j)
-        self.data.append(v)
-
-    def tocoo(self):
-        rows = np.frombuffer(self.rows, dtype=np.int32)
-        cols = np.frombuffer(self.cols, dtype=np.int32)
-        data = np.frombuffer(self.data, dtype=self.dtype)
-
-        return sp.coo_matrix((data, (rows, cols)),
-                             shape=self.shape)
-
-    def __len__(self):
-
-        return len(self.data)
-
-# -----------------------------------------------------------------------------
-
-
-
-

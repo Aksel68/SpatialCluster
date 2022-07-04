@@ -30,7 +30,7 @@ areas_to_points:    (dict) Dictionary with the cluster id as keys and a list of 
 
 """
 
-def DMoN_Clustering(features_X, features_position, r_max = 0.00034, n_clusters = 4, reg = 1, dropout = 0.0, num_epochs = 500):
+def DMoN_Clustering(features_X, features_position, A = None, r_max = 0.00034, n_clusters = 4, reg = 1, dropout = 0.0, num_epochs = 500, learning_rate = 0.001):
     features_X = data_format(features_X)
     features_position = position_data_format(features_position)
     X = features_X.to_numpy(dtype=float)
@@ -45,7 +45,8 @@ def DMoN_Clustering(features_X, features_position, r_max = 0.00034, n_clusters =
 
     # --------------------------------------------------------------------------
     points = list(zip(features_position.lon, features_position.lat))
-    A = adjacencyMatrix(features_position)
+    if(A == None):
+        A = adjacencyMatrix(features_position)
     n_nodes = A.shape[0]
     feature_size = X.shape[1]
 
@@ -66,7 +67,7 @@ def DMoN_Clustering(features_X, features_position, r_max = 0.00034, n_clusters =
             loss_value = sum(model.losses)
         return model.losses, tape.gradient(loss_value, model.trainable_variables)
 
-    optimizer = tf.keras.optimizers.Adam(0.001)
+    optimizer = tf.keras.optimizers.Adam(learning_rate)
     model.compile(optimizer, None)
 
     # --------------------------------------------------------------------------

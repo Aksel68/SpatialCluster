@@ -9,5 +9,6 @@ __all__ = [
     "methods"
     "preprocess"
     "visualization"
+    "metrics"
     "utils"
 ]
