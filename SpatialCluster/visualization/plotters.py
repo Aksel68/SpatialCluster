@@ -1,12 +1,13 @@
-import matplotlib.pyplot as plt
-import geopandas
-from matplotlib.colors import ListedColormap
-import matplotlib.colors as cl
-import folium
-from folium import Map
-import random
-import contextily as cx
 from SpatialCluster.constants import COLORS, palette
+from matplotlib.colors import ListedColormap
+import matplotlib.pyplot as plt
+import matplotlib.colors as cl
+import contextily as cx
+from folium import Map
+import numpy as np
+import geopandas
+import folium
+import random
 
 def plot_map(df, markersize = 30, figsize = (12,8)):
     if("geometry" not in df.columns):
@@ -20,7 +21,7 @@ def plot_map(df, markersize = 30, figsize = (12,8)):
         cmap = ListedColormap(palette[:n_clusters])
     fig, ax = plt.subplots(1, figsize=figsize)
     
-    gdf.plot(column="clusters", cmap=cmap_comuna, ax=ax, markersize=markersize)
+    gdf.plot(column="clusters", cmap=cmap, ax=ax, markersize=markersize)
 
     try:
         cx.add_basemap(ax, crs=gdf.to_crs(4326).crs.to_string())

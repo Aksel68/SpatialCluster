@@ -1,7 +1,7 @@
+from SpatialCluster.utils.data_format import numpy_data_format, position_data_format
+from SpatialCluster.utils.get_areas import get_areas
 from minisom import MiniSom  
 import numpy as np
-from SpatialCluster.utils.get_areas import get_areas
-from SpatialCluster.utils.data_format import numpy_data_format, position_data_format
 
 def SOM_Clustering(features_X, features_position, som_shape = (6,6), sigma=0.3, learning_rate=0.5, num_iterations = 100):
     features_X = numpy_data_format(features_X)

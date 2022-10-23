@@ -1,6 +1,6 @@
-from sklearn.mixture import GaussianMixture
-from SpatialCluster.utils.get_areas import get_areas
 from SpatialCluster.utils.data_format import data_format, position_data_format
+from SpatialCluster.utils.get_areas import get_areas
+from sklearn.mixture import GaussianMixture
 
 """
 ----------------

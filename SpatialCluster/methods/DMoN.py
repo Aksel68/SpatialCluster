@@ -1,14 +1,9 @@
 from SpatialCluster.methods.DMoN_core import convert_scipy_sparse_to_sparse_tensor, build_dmon, normalize_graph
-from SpatialCluster.utils.get_areas import get_areas
-from SpatialCluster.preprocess import adjacencyMatrix
 from SpatialCluster.utils.data_format import data_format, position_data_format
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-
-import numpy as np
+from SpatialCluster.preprocess import adjacencyMatrix
+from SpatialCluster.utils.get_areas import get_areas
 import tensorflow.compat.v2 as tf
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+import numpy as np
 
 
 """
@@ -85,8 +80,3 @@ def DMoN_Clustering(features_X, features_position, A = None, r_max = 0.00034, n_
     areas_to_points = get_areas(clusters, points)
 
     return areas_to_points, clusters
-
-    """
-    Dejar matriz implicita no más
-    Bag of parameters
-    """

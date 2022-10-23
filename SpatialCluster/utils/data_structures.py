@@ -1,6 +1,6 @@
-import array
-import numpy as np
 import scipy as sp
+import numpy as np
+import array
 
 class IncrementalCOOMatrix(object):
 

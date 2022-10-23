@@ -1,8 +1,8 @@
+from sklearn.metrics import cluster
 import tensorflow.compat.v2 as tf
-import array
 import scipy as sp
 import numpy as np
-from sklearn.metrics import cluster
+import array
 
 
 class DMoN(tf.keras.layers.Layer):

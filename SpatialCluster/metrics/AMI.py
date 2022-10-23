@@ -1,8 +1,8 @@
-from sklearn.metrics import normalized_mutual_info_score
 from SpatialCluster.utils.data_format import data_format, numpy_data_format
-import pandas as pd
+from sklearn.metrics import normalized_mutual_info_score
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 import numpy as np
 
 def AMI(clustering_1, clustering_2):

@@ -1,9 +1,9 @@
-import numpy as np
-import pandas as pd
-from scipy import spatial
-from scipy.stats import hypergeom
-from SpatialCluster.utils.get_areas import get_areas
 from SpatialCluster.utils.data_format import data_format, position_data_format
+from SpatialCluster.utils.get_areas import get_areas
+from scipy.stats import hypergeom
+from scipy import spatial
+import pandas as pd
+import numpy as np
 
 def KNN_Clustering(features_X, features_position, attribute, threshold, location, condition=">", k=5, K=30, alfa = 0.01, leafsize=10):
     features_X = data_format(features_X)
