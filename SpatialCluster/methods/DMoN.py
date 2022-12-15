@@ -25,7 +25,7 @@ areas_to_points:    (dict) Dictionary with the cluster id as keys and a list of 
 
 """
 
-def DMoN_Clustering(features_X, features_position, A = None, r_max = 0.00034, n_clusters = 4, reg = 1, dropout = 0.0, num_epochs = 500, learning_rate = 0.001):
+def DMoN_Clustering(features_X, features_position, A = None, criteria = "rk", r_max = 300, n_clusters = 4, reg = 1, dropout = 0.0, num_epochs = 500, learning_rate = 0.001):
     features_X = data_format(features_X)
     features_position = position_data_format(features_position)
     X = features_X.to_numpy(dtype=float)
@@ -41,7 +41,7 @@ def DMoN_Clustering(features_X, features_position, A = None, r_max = 0.00034, n_
     # --------------------------------------------------------------------------
     points = list(zip(features_position.lon, features_position.lat))
     if(A == None):
-        A = adjacencyMatrix(features_position)
+        A = adjacencyMatrix(features_position, criteria=criteria, r=r_max)
     n_nodes = A.shape[0]
     feature_size = X.shape[1]
 
