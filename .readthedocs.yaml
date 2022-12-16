@@ -4,11 +4,11 @@ build:
   image: testing
 
 sphinx:
-  configuration: code/docs/conf.py
+  configuration: code/docs/source/conf.py
 
 python:
   version: "3.8"
   install:
     - method: pip
-      path: code
+      path: code/docs
     - requirements: code/docs/requirements.txt
