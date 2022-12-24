@@ -1,7 +1,6 @@
 Introducción
 =============
 
-.. _introduction:
 
 Spatial Cluster es una librería open source que busca facilitar la generación de mapas de atributos urbanos que agrupe sus datos en distintos conjuntos. El proyecto consta de 5 módulos principales, los cuales corresponden a:
 
@@ -15,19 +14,17 @@ Spatial Cluster es una librería open source que busca facilitar la generación 
 
    - Dataset: Ofrece un dataset que cumple los requisitos necesarios para utilizar cualquier método que ofrece la librería.
 
-=====
-
-.. _instalation:
 
 Instalación
 ------------
 
 Para usar SpatialCluster, primero se debe instalar utilizando pip:
 
+```{eval-rst}
 .. code-block:: console
 
    (.venv) $ pip install SpatialCluster
-
+```
 
 =====
 
