@@ -1,9 +1,6 @@
 Preprocesamiento
 ====================
 
-.. _installation:
-
-=====
 
 Dar formato a tabla
 --------------------
@@ -28,11 +25,12 @@ La primera corresponde a *attributes_format* que entrega *(features_position, fe
 
 La segunda corresponde a *attributes_with_zone_format* que entrega *(features_position, features_X)* donde *features_position* corresponde a un dataframe con la longitud y latitud de los datos y *features_X* que corresponde a los atributos de los datos con una columna extra que indica a qué zona pertenece el punto (en el dataset de ejemplo corresponde a la comuna).
 
+```{eval-rst}
 .. code-block:: python
 
    features_position, features_X = attributes_with_zone_format(df)
+```
 
-=====
 
 Matriz de adyacencia
 ---------------------
@@ -45,11 +43,12 @@ Por vecinos dentro de un radio r.
 
 Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos.
 
+```{eval-rst}
 .. code-block:: python
 
    A = adjacencyMatrix(features_position, r=radius, k=k, min_k=min_k, criteria=criteria, leafsize=leafsize)
+```
 
-=====
 
 Anillos
 ------------
@@ -62,8 +61,10 @@ Por vecinos dentro de un radio r.
 
 Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos.
 
+
+```{eval-rst}
 .. code-block:: python
 
    features_X1 = rings(features_X, features_position, criteria=criteria, max_radios=max_radios, max_neighbours=max_neighbours, weight_mode=weight_mode, keep_original_value=keep_original_value, smoothing=smoothing, normalize=normalize, leafsize=leafsize)
-
+```
 

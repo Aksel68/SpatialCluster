@@ -26,8 +26,6 @@ Para usar SpatialCluster, primero se debe instalar utilizando pip:
    (.venv) $ pip install SpatialCluster
 ```
 
-=====
-
 Siguientes pasos
 -----------------
 
