@@ -20,7 +20,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=find_packages(),
-    install_requires=['sklearn','tensorflow','scipy','numpy','matplotlib','folium','minisom','seaborn','geopandas','contextily'],
+    install_requires=['scikit-learn','tensorflow','scipy','numpy','matplotlib','folium','minisom','seaborn','geopandas','contextily'],
     url="https://github.com/AxlKings/SpatialCluster",
     keywords='python spatial urban cluster',
     license='MIT',
