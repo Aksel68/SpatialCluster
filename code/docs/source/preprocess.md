@@ -70,7 +70,7 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de qu
 ```{eval-rst}
 .. code-block:: python
 
-   A = adjacencyMatrix(features_position, r=radius, k=k, min_k=min_k, criteria=criteria, leafsize=leafsize)
+   A = adjacencyMatrix(features_position, r = 300, k = 5, min_k = 2, criteria = "k", directed = True, leafsize = 10)
 ```
 
 
@@ -109,6 +109,6 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de qu
 ```{eval-rst}
 .. code-block:: python
 
-   features_X1 = rings(features_X, features_position, criteria=criteria, max_radios=max_radios, max_neighbours=max_neighbours, weight_mode=weight_mode, keep_original_value=keep_original_value, smoothing=smoothing, normalize=normalize, leafsize=leafsize)
+   features_X1 = rings(features_X, features_position, criteria="k", max_radios=[200, 300, 400], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10)
 ```
 
