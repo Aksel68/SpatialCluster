@@ -11,7 +11,7 @@ import scipy as sp
 
 import time
 
-def TDI_Clustering(features_X, features_position, A = None, r=300, k=5, leafsize=10):
+def TDI_Clustering(features_X, features_position, A = None, r=300.0, k=5, leafsize=10):
     a = time.time()
     features_X = numpy_data_format(features_X)
     features_position = position_data_format(features_position)

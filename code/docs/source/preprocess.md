@@ -48,20 +48,20 @@ La función *adjacencyMatrix* crea una matriz de adyacencia que para cada punto 
 
 Para crear la matriz de adyacencia se pueden usar los siguientes criterios para definir una vecindad:
 
-Por k vecinos más cercanos. (Criterio "*k*")
+Por k vecinos más cercanos (criterio "*k*").
 
-Por vecinos dentro de un radio r. (Criterio "*r*")
+Por vecinos dentro de un radio r (criterio "*r*").
 
-Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos más cercanos. (Criterio "*rk*")
+Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos más cercanos (criterio "*rk*").
 
 ### Parámetros
 
-- **features_position**: Pandas DataFrame con la longitud y latitud de los datos.
-- **r**: Distancia máxima en metros a la que se considerará a un punto como vecino (Radio del vecindario para cada punto). Por defecto: 300
-- **k**: Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 5
-- **min_k**: Cantidad mínima de vecinos que debe tener el vecindario en caso de usar el criterio "*rk*". Por defecto: 2
-- **criteria**: Criterio que se usará para determinar los vecindarios (*k*, *r*, *rk*). Por defecto: "k"
-- **leafsize**: Corresponde al número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
+- **r**: *(float)* Distancia máxima en metros a la que se considerará a un punto como vecino (Radio del vecindario para cada punto). Por defecto: 300.0
+- **k**: *(int)* Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 5
+- **min_k**: *(int)* Cantidad mínima de vecinos que debe tener el vecindario en caso de usar el criterio "*rk*". Por defecto: 2
+- **criteria**: *(string)* Criterio que se usará para determinar los vecindarios (*k*, *r*, *rk*). Por defecto: "k"
+- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
@@ -70,7 +70,7 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de qu
 ```{eval-rst}
 .. code-block:: python
 
-   A = adjacencyMatrix(features_position, r = 300, k = 5, min_k = 2, criteria = "k", directed = True, leafsize = 10)
+   A = adjacencyMatrix(features_position, r = 300.0, k = 5, min_k = 2, criteria = "k", directed = True, leafsize = 10)
 ```
 
 
@@ -83,24 +83,24 @@ Por ejemplo: Si *max_radios* corresponde a (300, 400, 500) por cada columna de *
 
 Para crear los anillos se pueden usar los siguientes criterios para definir un vecindario:
 
-Por k vecinos más cercanos. (Criterio "*k*")
+Por k vecinos más cercanos (criterio "*k*").
 
-Por vecinos dentro de un radio r. (Criterio "*r*")
+Por vecinos dentro de un radio r (criterio "*r*").
 
-Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos. (Criterio "*rk*")
+Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos (criterio "*rk*").
 
 ### Parámetros
 
-- **features_X**: Pandas DataFrame con los atributos de los datos (sin longitud y latitud).
-- **features_position**: Pandas DataFrame con la longitud y latitud de los datos.
-- **criteria**: Criterio que se usará para determinar los vecindarios (*k*, *r*, *rk*). Por defecto: "k"
-- **max_radios**: Lista de radios en metros que se utilizarán para definir los vecindarios. Por defecto: [200, 300, 400]
-- **max_neighbours**: Lista de cantidad máxima de puntos que tendrán los vecindarios. Por defecto: [200, 500, 1000]
-- **weight_mode**: Criterio que se utilizará para la ponderación ("*Simple*" o "*Distance Inverse*"). Por defecto: "Simple"
-- **keep_original_value**: Booleano que determinará si se conservan las columnas originales o no. Por defecto: True
-- **smoothing**: Parámetro que se utiliza para suavizar las distancias al momento de ponderar los datos (útil en caso de ponderar con el inverso de la distancia, en caso de que estas sean muy cercanas a 0). Por defecto: 1e-08
-- **normalize**: Booleano que se utiliza para normalizar las distancias, evita que al ponderar por el inverso de la distancia algunos datos se inflen más de lo deseado. Por defecto: True
-- **leafsize**: Corresponde al número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
+- **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
+- **criteria**: *(string)* Criterio que se usará para determinar los vecindarios (*k*, *r*, *rk*). Por defecto: "k"
+- **max_radios**: *(Lista de floats)* Lista de radios en metros que se utilizarán para definir los vecindarios. Por defecto: [200.0, 300.0, 400.0]
+- **max_neighbours**: *(Lista de ints)* Lista de cantidad máxima de puntos que tendrán los vecindarios. Por defecto: [200, 500, 1000]
+- **weight_mode**: *(string)* Criterio que se utilizará para la ponderación ("*Simple*" o "*Distance Inverse*"). Por defecto: "Simple"
+- **keep_original_value**: *(bool)* Determinará si se conservan las columnas originales o no. Por defecto: True
+- **smoothing**: *(float)* Parámetro que se utiliza para suavizar las distancias al momento de ponderar los datos (útil en caso de ponderar con el inverso de la distancia, en caso de que estas sean muy cercanas a 0). Por defecto: 1e-08
+- **normalize**: *(bool)* Determina si se normalizan las distancias, lo cual evita que al ponderar por el inverso de la distancia algunos datos se inflen más de lo deseado. Por defecto: True
+- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
@@ -109,6 +109,6 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de qu
 ```{eval-rst}
 .. code-block:: python
 
-   features_X1 = rings(features_X, features_position, criteria="k", max_radios=[200, 300, 400], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10)
+   features_X1 = rings(features_X, features_position, criteria="k", max_radios=[200.0, 300.0, 400.0], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10)
 ```
 

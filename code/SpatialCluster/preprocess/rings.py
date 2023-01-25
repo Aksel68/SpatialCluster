@@ -3,7 +3,7 @@ from scipy import spatial
 import pandas as pd
 import numpy as np
 
-def rings(features_X, features_position, criteria="k", max_radios=[200, 300, 400], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10):
+def rings(features_X, features_position, criteria="k", max_radios=[200.0, 300.0, 400.0], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10):
 
     """
     El algoritmo toma todos los puntos dentro de un radio máximo.

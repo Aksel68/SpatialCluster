@@ -3,7 +3,7 @@ from SpatialCluster.utils.data_format import position_data_format
 import scipy as sp
 import numpy as np
 
-def adjacencyMatrix(features_position, r = 300, k = 5, min_k = 2, criteria = "k", directed = True, leafsize = 10):
+def adjacencyMatrix(features_position, r = 300.0, k = 5, min_k = 2, criteria = "k", directed = True, leafsize = 10):
     meter_to_degree_equivalence = 9.090909091e-6
     r = r*meter_to_degree_equivalence # Se transforma de metros a grados
     features_position = position_data_format(features_position)
