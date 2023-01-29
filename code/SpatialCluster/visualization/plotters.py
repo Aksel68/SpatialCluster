@@ -33,7 +33,7 @@ def plot_map(df, markersize = 30, figsize = (12,8)):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-def plot_map_sample(areas_to_points, min_supp, max_samples_per_clusters, location = [-33.45, -70.65], radius = 10):
+def plot_map_sample(areas_to_points, min_supp, max_samples_per_clusters, location = (-33.45, -70.65), radius = 10):
     COLORS_9_SET = [plt.cm.Set1(i) for i in range(10)]
     COLORS_9_SET = [cl.to_hex(c) for c in COLORS_9_SET]
 

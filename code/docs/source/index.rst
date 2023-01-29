@@ -2,7 +2,7 @@
 Documentación de SpatialCluster
 ==================================================
 
-**SpatialCluster** es una librería de Python para generar mapas de atributos urbanos. Clusteriza `datos geográficos <https://world.openfoodfacts.org/>`_ y ofrece un uso *simple* e
+**SpatialCluster** es una librería de Python para generar mapas de atributos urbanos. Clusteriza `datos geográficos`_ y ofrece un uso *simple* e
 *intuitivo*. Para más información se recomienda leer la :doc:`usage`, incluyendo la sección de cómo
 :ref:`instalar <instalation>` el proyecto.
 
