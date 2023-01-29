@@ -4,7 +4,7 @@ Métodos
 DMoN
 ------------
 
-Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en este caso para realizar clustering.
+Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en este caso para realizar clustering no supervisado, se enfoca en optimizar la modularidad, la cual corresponde a una medida usada para determinar la calidad del clustering.
 
 ### Parámetros
 
@@ -15,8 +15,8 @@ Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en 
 - **criteria**: *(string)* Criterio que se usará para crear la matriz de adyacencia (*k*, *r*, *rk*). Por defecto: "k"
 - **r_max**: *(float)* Radio máximo en metros que se utilizará para la creación de la matriz de adyacencia. Por defecto: 300.0
 - **n_clusters**: *(int)* Cantidad de clusters que considerará el método para agrupar los datos. Por defecto: 4
-- **reg**: *(float)* Párametro dentro del rango [0,1] para regularizar su función de pérdida y así evitar soluciones triviales como agrupar todos los datos en el mismo cluster. Por defecto: 1.0
-- **dropout**: *(float)* Párametro del rango [0,1] para evitar el sobreajuste a los datos (overfitting). Valores altos permitirán evitar más el sobreajuste, pero afectará el entrenamiento haciendo necesario más datos. Por defecto: 0.0
+- **reg**: *(float)* Párametro dentro del rango [0,1] que pondera la regularización de la función de pérdida para así evitar soluciones triviales como agrupar todos los datos en el mismo cluster. Por defecto: 1.0
+- **dropout**: *(float)* Párametro del rango [0,1] para evitar el sobreajuste a los datos (overfitting). Valores altos permitirán evitar más el sobreajuste, pero afectará el entrenamiento haciendo necesario más datos o más épocas. Por defecto: 0.0
 - **num_epochs**: *(int)* Indica cuánto durará el entrenamiento. Valores muy altos podrían provocar sobreajuste. Por defecto: 500
 - **learning_rate**: *(float)* Párametro dentro del rango [0,1] que indica la tasa de ajustes que irá realizando la red en cada época (epoch). Valores muy altos permitirán un cambio más agresivo, lo cual puede provocar que no logre encontrar el punto óptimo. Valores bajos implicará que el aprendizaje será más lento por lo cuál necesitará más épocas y más datos para entrenar.
 
@@ -35,7 +35,7 @@ Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en 
 GMM
 ------------
 
-Gaussian Mixture Models es un método clásico de clustering para datos urbanos.
+Este método permite utilizar una distribución de probabilidad del modelo de mezcla gaussiana para realizar clustering. 
 
 ### Parámetros
 
@@ -71,19 +71,18 @@ Por defecto: "full"
 KNN
 ------------
 
-K-Nearest Neighbours es un enfoque clásico para realizar clustering en general.
-
+K-Nearest Neighbours es un enfoque que evita el problema de la unidad areal modificable (MAUP). Este método se basa en la agregación multiescalar de los *k* vecinos más cercanos de una localización en una comparación estadística con un área más grande de referencia en el que se utilizan *K* vecinos más cercanos (siendo *K > k*). Este método distingue entre dos tipos de clusters, los *hot spots* y los *cold spots*.
 ### Parámetros
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
 - **attribute**: *(string)* Indica qué columna de *features_X* se utilizará para caracterizar a los datos.
 - **threshold**: *(float/int/bool)* Umbral que determina si un dato cumple o no con el criterio según su columna *attribute*.
-- **location**: *(string)* Nombre de la columna de *features_X* se utilizará para determinar la zona geográfica a la que pertenecen los datos (Por ejemplo: "comuna").
+- **location**: *(string)* Nombre de la columna de *features_X* se utilizará para determinar la localización a la que pertenecen los datos (Por ejemplo: "comuna").
 - **condition**: *(string)* Operador que se utilizará (">", "<", ">=", "<=", "==") para ver si el dato cumple con la condición o no. Por defecto: ">"
 - **k**: *(int)* Cantidad de vecinos cercanos se utilizarán para la unidad de área más pequeña. Por defecto: 5
 - **K**: *(int)* Cantidad de vecinos cercanos se utilizarán para la unidad de área más grande. Por defecto: 30
-- **alfa**: *(float)* Umbral para evaluar el estadístico de contraste. Por defecto: 0.01
+- **alfa**: *(float)* Umbral para evaluar si el dato corresponde a un *cold spot* o *hot spot* con una significancia estadística. Por defecto: 0.01
 - **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
@@ -101,15 +100,15 @@ K-Nearest Neighbours es un enfoque clásico para realizar clustering en general.
 SOM
 ------------
 
-Self Organized Maps.
+Self Organized Map es un tipo de red neuronal artificial capaz de convertir relaciones estadísticas complejas y no lineales entre elementos de datos de alta dimensión en relaciones geométricas simples en una pantalla de baja dimensión. Este método aprovecha esta propiedad de SOM para realizar clustering.
 
 ### Parámetros
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud). *SOM* no trabaja con strings y se recomienda que los datos sean tipo float.
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
 - **som_shape**: *(tupla de ints)* Determina la topología de la red neuronal que usará SOM de la forma (cantidad_filas, cantidad_columnas). Por defecto: (6,6)
-- **sigma**: *(float)* Parámetro dentro del rango [0,1] que corresponde a la cantidad de información que se compartirá entre neuronas en cada iteración del proceso de entrenamiento de la red. Por defecto: 0.3
-- **learning_rate**: *(float)* Párametro dentro del rango [0,1] que corresponde a la cantidad de información que se compartirá entre neuronas en cada iteración del proceso de entrenamiento de la red. Por defecto: 0.5
+- **sigma**: *(float)* Dispersión de la función de vecindad, debe ser adecuada a la dimensión de SOM utilizada. Por defecto: 0.3
+- **learning_rate**: *(float)* Párametro dentro del rango [0,1] que corresponde a la cantidad de información inicial que se compartirá entre neuronas en cada iteración del proceso de entrenamiento de la red. Por defecto: 0.5
 - **num_iterations**: *(int)* Cantidad de iteraciones que se realizarán en el proceso de entrenamiento. Por defecto: 100
 
 ### Retorno
@@ -126,7 +125,7 @@ Self Organized Maps.
 TDI
 ------------
 
-TDI corresponde a un método basado en Teoría de la Información, la cual utiliza una matriz de pesos utilizando la divergencia de Shannon como distancia entre los puntos. Luego se aplica Spectral Clustering sobre esta matriz.
+TDI corresponde a un método basado en Teoría de la Información, la cual utiliza una matriz de pesos utilizando la divergencia de Shannon como distancia entre los puntos. Luego se aplica Spectral Clustering sobre esta matriz. Este método permite curvas de perfil con escala espacial no constante y análisis de descomposición con unidades de área no arbitrarias.
 
 ### Parámetros
 
