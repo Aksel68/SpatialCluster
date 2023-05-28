@@ -29,4 +29,4 @@ Para usar SpatialCluster, primero se debe instalar utilizando pip:
 Siguientes pasos
 -----------------
 
-Para utilizar la librería se recomienda visitar la sección de Métodos y Visualización para ver ejemplos de uso. También se recomienda revisar la sección de preprocesamiento ya que puede ser bastante útil para obtener buenos resultados.
+Para utilizar la librería se recomienda visitar la sección de :doc:`methods` y :doc:`visualization` para ver ejemplos de uso. También se recomienda revisar la sección de :doc:`preprocess` ya que puede ser bastante útil para obtener buenos resultados.
