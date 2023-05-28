@@ -23,8 +23,6 @@ El siguiente método genera el mapa con todos los puntos, coloreados según el c
    plot_map(gdf, markersize=30, figsize=(12,8))
 ```
 
-=====
-
 Graficar Muestreo aleatorio
 ----------------------------
 

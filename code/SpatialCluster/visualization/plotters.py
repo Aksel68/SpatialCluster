@@ -9,7 +9,7 @@ import geopandas
 import folium
 import random
 
-def plot_map(df, markersize = 30, figsize = (12,8)):
+def plot_map(df, markersize = 10, figsize = (12,8)):
     if("geometry" not in df.columns):
         gdf = geopandas.GeoDataFrame(df, geometry=geopandas.points_from_xy(df['lon'], df['lat']))
     else:
@@ -25,8 +25,9 @@ def plot_map(df, markersize = 30, figsize = (12,8)):
 
     try:
         cx.add_basemap(ax, crs=gdf.to_crs(4326).crs.to_string())
-    except:
+    except Exception as e:
         print(f'Basemap error')
+        print(e)
 
     plt.show()
 
