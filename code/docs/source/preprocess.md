@@ -19,11 +19,6 @@ La primera corresponde a *attributes_format* que entrega *(features_position, fe
 
 - **features_X**: Pandas DataFrame con los atributos de los datos (sin longitud y latitud).
 
-{py:func}`SpatialCluster.datasets.load_manzana_data`
-
-```{eval-rst}
-   autofunction:: SpatialCluster.datasets.load_manzana_data
-```
 
 ```{eval-rst}
 .. code-block:: python
@@ -83,11 +78,11 @@ Por ejemplo: Si *max_radios* corresponde a (300, 400, 500) por cada columna de *
 
 Para crear los anillos se pueden usar los siguientes criterios para definir un vecindario:
 
-Por k vecinos más cercanos (criterio "*k*").
+- Por k vecinos más cercanos (criterio "*k*").
 
-Por vecinos dentro de un radio r (criterio "*r*").
+- Por vecinos dentro de un radio r (criterio "*r*").
 
-Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos (criterio "*rk*").
+- Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos (criterio "*rk*").
 
 ### Parámetros
 

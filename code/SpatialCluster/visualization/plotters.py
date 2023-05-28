@@ -9,7 +9,7 @@ import geopandas
 import folium
 import random
 
-def plot_map(df, markersize = 10, figsize = (12,8)):
+def plot_map(df, markersize = 10, figsize = (12,8), path = None):
     if("geometry" not in df.columns):
         gdf = geopandas.GeoDataFrame(df, geometry=geopandas.points_from_xy(df['lon'], df['lat']))
     else:
@@ -28,13 +28,14 @@ def plot_map(df, markersize = 10, figsize = (12,8)):
     except Exception as e:
         print(f'Basemap error')
         print(e)
-
+    if path != None:
+        plt.savefig(f'{path}')
     plt.show()
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-def plot_map_sample(areas_to_points, min_supp, max_samples_per_clusters, location = (-33.45, -70.65), radius = 10):
+def plot_map_sample(areas_to_points, min_supp, max_samples_per_clusters, location = (-33.45, -70.65), radius = 10, path = None):
     COLORS_9_SET = [plt.cm.Set1(i) for i in range(10)]
     COLORS_9_SET = [cl.to_hex(c) for c in COLORS_9_SET]
 
@@ -53,5 +54,6 @@ def plot_map_sample(areas_to_points, min_supp, max_samples_per_clusters, locatio
         for point in a_:
             folium.Circle(location=[point[1], point[0]], popup = str(point),
                             color=colors_to_use[index], radius=radius).add_to(hmap)
-            
+    if path != None:
+        hmap.save(path)
     return hmap
