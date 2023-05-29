@@ -10,23 +10,17 @@ Para comparar dos clusterings de mapas de atributos se puede usar la función AR
 
 ### Parámetros
 
-- **gdf**: *(GeoPandas DataFrame)* Contiene los clusters a los que pertenece cada punto y la geometría para localizarlos geográficamente en el mapa. En caso de que la columna "geometry" no exista, el método la generará a partir de las columnas "lon" y "lat".
-- **markersize**: *(Int)* Tamaño de los puntos en el mapa. Por defecto: 30
-- **figsize**: *(Tupla de ints)* Tamaño de la figura que contendrá el mapa. Por defecto: (12,8)
+- **clustering_1**: *(Numpy Array)* Contiene los clusters a los que pertenece cada punto para el clustering 1.
+- **clustering_2**: *(Numpy Array)* Contiene los clusters a los que pertenece cada punto para el clustering 2.
 
 ### Retorno
 
-- No retorna nada, dibuja el mapa generado.
+- **ARI**: *(Float)* ARI score.
 
 ```{eval-rst}
 .. code-block:: python
 
-   plot_map(gdf, markersize=30, figsize=(12,8))
-
-```{eval-rst}
-.. code-block:: python
-
-   ari = ARI(clusters_map1, clusters_map2)
+   ari = ARI(clustering_1, clustering_2)
    ari
 ```
 
@@ -34,18 +28,12 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 
 ### Parámetros
 
-- **gdf**: *(GeoPandas DataFrame)* Contiene los clusters a los que pertenece cada punto y la geometría para localizarlos geográficamente en el mapa. En caso de que la columna "geometry" no exista, el método la generará a partir de las columnas "lon" y "lat".
-- **markersize**: *(Int)* Tamaño de los puntos en el mapa. Por defecto: 30
-- **figsize**: *(Tupla de ints)* Tamaño de la figura que contendrá el mapa. Por defecto: (12,8)
+- **clusterings**: *(Numpy Matrix)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
+- **plot**: *(Bool)* Indica si se desea mostrar la matriz gráficamente.
 
 ### Retorno
 
-- No retorna nada, dibuja el mapa generado.
-
-```{eval-rst}
-.. code-block:: python
-
-   plot_map(gdf, markersize=30, figsize=(12,8))
+- **ARI_matr**: *(Numpy Matrix)* Contains the ARI score for each pair of clustering.
 
 ```{eval-rst}
 .. code-block:: python
@@ -62,18 +50,12 @@ Para comparar dos clusterings de mapas de atributos se puede usar la función AM
 
 ### Parámetros
 
-- **gdf**: *(GeoPandas DataFrame)* Contiene los clusters a los que pertenece cada punto y la geometría para localizarlos geográficamente en el mapa. En caso de que la columna "geometry" no exista, el método la generará a partir de las columnas "lon" y "lat".
-- **markersize**: *(Int)* Tamaño de los puntos en el mapa. Por defecto: 30
-- **figsize**: *(Tupla de ints)* Tamaño de la figura que contendrá el mapa. Por defecto: (12,8)
+- **clustering_1**: *(Numpy Array)* Contiene los clusters a los que pertenece cada punto para el clustering 1.
+- **clustering_2**: *(Numpy Array)* Contiene los clusters a los que pertenece cada punto para el clustering 2.
 
 ### Retorno
 
-- No retorna nada, dibuja el mapa generado.
-
-```{eval-rst}
-.. code-block:: python
-
-   plot_map(gdf, markersize=30, figsize=(12,8))
+- **AMI**: *(Float)* AMI score.
 
 ```{eval-rst}
 .. code-block:: python
@@ -86,18 +68,12 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 
 ### Parámetros
 
-- **gdf**: *(GeoPandas DataFrame)* Contiene los clusters a los que pertenece cada punto y la geometría para localizarlos geográficamente en el mapa. En caso de que la columna "geometry" no exista, el método la generará a partir de las columnas "lon" y "lat".
-- **markersize**: *(Int)* Tamaño de los puntos en el mapa. Por defecto: 30
-- **figsize**: *(Tupla de ints)* Tamaño de la figura que contendrá el mapa. Por defecto: (12,8)
+- **clusterings**: *(Numpy Matrix)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
+- **plot**: *(Bool)* Indica si se desea mostrar la matriz gráficamente.
 
 ### Retorno
 
-- No retorna nada, dibuja el mapa generado.
-
-```{eval-rst}
-.. code-block:: python
-
-   plot_map(gdf, markersize=30, figsize=(12,8))
+- **AMI_matr**: *(Numpy Matrix)* Contains the AMI score for each pair of clustering.
 
 ```{eval-rst}
 .. code-block:: python
