@@ -6,7 +6,7 @@ A continuación se ofrecen dos mediciones para comparar clusterings. Ambas son u
 ARI
 ------------
 
-Para comparar dos clusterings de mapas de atributos se puede usar la función ARI (Adjusted Rand Index), la cuál retorna un número real entre 0 y 1 que indica el grado de similaridad entre ambas soluciones.
+Para comparar dos clusterings de mapas de atributos se puede usar la función ARI (Adjusted Rand Index), la cual retorna un número real entre 0 y 1 que indica el grado de similaridad entre ambas soluciones.
 
 ### Parámetros
 
@@ -15,7 +15,7 @@ Para comparar dos clusterings de mapas de atributos se puede usar la función AR
 
 ### Retorno
 
-- **ARI**: *(Float)* ARI score.
+- **ARI**: *(float)* ARI score.
 
 ```{eval-rst}
 .. code-block:: python
@@ -29,11 +29,11 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 ### Parámetros
 
 - **clusterings**: *(Numpy Matrix)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
-- **plot**: *(Bool)* Indica si se desea mostrar la matriz gráficamente.
+- **plot**: *(bool)* Indica si se desea mostrar la matriz gráficamente.
 
 ### Retorno
 
-- **ARI_matr**: *(Numpy Matrix)* Contains the ARI score for each pair of clustering.
+- **ARI_matr**: *(Numpy Matrix)* Contiene el ARI score para cada par de clusterings.
 
 ```{eval-rst}
 .. code-block:: python
@@ -46,7 +46,7 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 AMI
 ------------
 
-Para comparar dos clusterings de mapas de atributos se puede usar la función AMI (Adjusted Mutual Information), la cuál retorna un número real entre 0 y 1 que indica el grado de similaridad entre ambas soluciones.
+Para comparar dos clusterings de mapas de atributos se puede usar la función AMI (Adjusted Mutual Information), la cual retorna un número real entre 0 y 1 que indica el grado de similaridad entre ambas soluciones.
 
 ### Parámetros
 
@@ -55,7 +55,7 @@ Para comparar dos clusterings de mapas de atributos se puede usar la función AM
 
 ### Retorno
 
-- **AMI**: *(Float)* AMI score.
+- **AMI**: *(float)* AMI score.
 
 ```{eval-rst}
 .. code-block:: python
@@ -69,11 +69,11 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 ### Parámetros
 
 - **clusterings**: *(Numpy Matrix)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
-- **plot**: *(Bool)* Indica si se desea mostrar la matriz gráficamente.
+- **plot**: *(bool)* Indica si se desea mostrar la matriz gráficamente.
 
 ### Retorno
 
-- **AMI_matr**: *(Numpy Matrix)* Contains the AMI score for each pair of clustering.
+- **AMI_matr**: *(Numpy Matrix)* Contiene el AMI score para cada par de clusterings.
 
 ```{eval-rst}
 .. code-block:: python

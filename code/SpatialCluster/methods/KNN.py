@@ -27,7 +27,7 @@ def KNN_Clustering(features_X, features_position, attribute, threshold, location
         elif(condition == "=="):
             f.append(df[df[attribute] == threshold].shape[0])
         x_centroid.append((df["lon"].mean(), df["lat"].mean()))
-    tree = spatial.KDTree(data = x_centroid, leafsize = leafsize) # Revisar si hacerlo con centroides o con todos los puntos
+    tree = spatial.KDTree(data = x_centroid, leafsize = leafsize)
     Nk = tree.query(x_centroid, k = k)[1]
     NK = tree.query(x_centroid, k = K)[1]
 

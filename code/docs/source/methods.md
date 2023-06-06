@@ -9,21 +9,21 @@ Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en 
 ### Parámetros
 
 
-- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud). *DMoN* no trabaja con strings y se recomienda que los datos sean tipo float.
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud). *DMoN* **no** trabaja con strings y se recomienda que los datos sean tipo float.
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
-- **A**: *(Numpy matrix)* Matriz de adyacencia utilizada, en caso de que no se entregue una se utilizará el método de adjacencyMatrix de SpatialCluster para crear una. Por defecto: None
+- **A**: *(Numpy matrix)* Matriz de adyacencia utilizada. En caso de que no se entregue una, se utilizará el método de adjacencyMatrix de SpatialCluster para crearla. Por defecto: None
 - **criteria**: *(string)* Criterio que se usará para crear la matriz de adyacencia (*k*, *r*, *rk*). Por defecto: "k"
-- **r_max**: *(float)* Radio máximo en metros que se utilizará para la creación de la matriz de adyacencia. Por defecto: 300.0
+- **r_max**: *(float)* Radio máximo en metros que se utilizará para la creación de la matriz de adyacencia en caso de ser necesario. Por defecto: 300.0
 - **n_clusters**: *(int)* Cantidad de clusters que considerará el método para agrupar los datos. Por defecto: 4
 - **reg**: *(float)* Párametro dentro del rango [0,1] que pondera la regularización de la función de pérdida para así evitar soluciones triviales como agrupar todos los datos en el mismo cluster. Por defecto: 1.0
-- **dropout**: *(float)* Párametro del rango [0,1] para evitar el sobreajuste a los datos (overfitting). Valores altos permitirán evitar más el sobreajuste, pero afectará el entrenamiento haciendo necesario más datos o más épocas. Por defecto: 0.0
+- **dropout**: *(float)* Párametro del rango [0,1] para evitar el sobreajuste a los datos (overfitting). Valores altos permitirán evitar más el sobreajuste, pero afectará el entrenamiento haciendo necesario más datos o más épocas (epochs). Por defecto: 0.0
 - **num_epochs**: *(int)* Indica cuánto durará el entrenamiento. Valores muy altos podrían provocar sobreajuste. Por defecto: 500
-- **learning_rate**: *(float)* Párametro dentro del rango [0,1] que indica la tasa de ajustes que irá realizando la red en cada época (epoch). Valores muy altos permitirán un cambio más agresivo, lo cual puede provocar que no logre encontrar el punto óptimo. Valores bajos implicará que el aprendizaje será más lento por lo cuál necesitará más épocas y más datos para entrenar.
+- **learning_rate**: *(float)* Párametro dentro del rango [0,1] que indica la tasa de ajustes que irá realizando la red en cada época. Valores muy altos permitirán un cambio más agresivo, lo cual puede provocar que no logre encontrar el punto óptimo. Valores bajos implicará que el aprendizaje será más lento por lo cuál necesitará más épocas y más datos para entrenar.
 
 ### Retorno
 
-- **DMoN_areas_to_points**: Diccionario que para cada cluster guarda los puntos que pertenecen a este.
-- **DMoN_clusters**: Arreglo con los puntos etiquetados según el cluster al que fueron asignado.
+- **DMoN_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
+- **DMoN_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
 ```{eval-rst}
 .. code-block:: python
@@ -39,12 +39,12 @@ Este método permite utilizar una distribución de probabilidad del modelo de me
 
 ### Parámetros
 
-- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud). *GMM* no trabaja con strings y se recomienda que los datos sean tipo float.
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud). *GMM* **no** trabaja con strings y se recomienda que los datos sean tipo float.
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
 - **n_clusters**: *(int)* Indica la cantidad de clusters que considerará el método para agrupar los datos. Por defecto: 4
 - **covariance_type**: *(string)* Describe el tipo de parámetros de covarianza. Debe ser uno de los siguientes:
 
-   - "full": Cada componente ttiene su propia matriz de covarianza general.
+   - "full": Cada componente tiene su propia matriz de covarianza general.
 
    - "tied": Todos los componentes comparten la misma matriz de covarianza general.
 
@@ -59,8 +59,8 @@ Por defecto: "full"
 
 ### Retorno
 
-- **GMM_areas_to_points**: Diccionario que para cada cluster guarda los puntos que pertenecen a este.
-- **GMM_clusters**: Arreglo con los puntos etiquetados según el cluster al que fueron asignado.
+- **GMM_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
+- **GMM_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
 ```{eval-rst}
 .. code-block:: python
@@ -71,24 +71,24 @@ Por defecto: "full"
 KNN
 ------------
 
-K-Nearest Neighbours es un enfoque que evita el problema de la unidad areal modificable (MAUP). Este método se basa en la agregación multiescalar de los *k* vecinos más cercanos de una localización en una comparación estadística con un área más grande de referencia en el que se utilizan *K* vecinos más cercanos (siendo *K > k*). Este método distingue entre dos tipos de clusters, los *hot spots* y los *cold spots*.
+K-Nearest Neighbours es un enfoque que evita el problema de la unidad espacial modificable (MAUP). Este método se basa en la agregación multiescalar de los *k* vecinos más cercanos de una localización en una comparación estadística con un área más grande de referencia en el que se utilizan *K* vecinos más cercanos (siendo *K > k*). Este método distingue entre dos tipos de clusters, los *hot spots* y los *cold spots*.
 ### Parámetros
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
 - **attribute**: *(string)* Indica qué columna de *features_X* se utilizará para caracterizar a los datos.
 - **threshold**: *(float/int/bool)* Umbral que determina si un dato cumple o no con el criterio según su columna *attribute*.
-- **location**: *(string)* Nombre de la columna de *features_X* se utilizará para determinar la localización a la que pertenecen los datos (Por ejemplo: "comuna").
+- **location**: *(string)* Nombre de la columna de *features_X* que se utilizará para determinar la localización a la que pertenecen los datos (Por ejemplo: "comuna").
 - **condition**: *(string)* Operador que se utilizará (">", "<", ">=", "<=", "==") para ver si el dato cumple con la condición o no. Por defecto: ">"
-- **k**: *(int)* Cantidad de vecinos cercanos se utilizarán para la unidad de área más pequeña. Por defecto: 5
-- **K**: *(int)* Cantidad de vecinos cercanos se utilizarán para la unidad de área más grande. Por defecto: 30
+- **k**: *(int)* Cantidad de vecinos cercanos que se utilizarán para la unidad de área más pequeña. Por defecto: 5
+- **K**: *(int)* Cantidad de vecinos cercanos que se utilizarán para la unidad de área más grande. Por defecto: 30
 - **alfa**: *(float)* Umbral para evaluar si el dato corresponde a un *cold spot* o *hot spot* con una significancia estadística. Por defecto: 0.01
 - **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
-- **KNN_areas_to_points**: Diccionario que para cada cluster guarda los puntos que pertenecen a este.
-- **KNN_clusters**: Arreglo con los puntos etiquetados según el cluster al que fueron asignado.
+- **KNN_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
+- **KNN_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
 ```{eval-rst}
 .. code-block:: python
@@ -100,7 +100,7 @@ K-Nearest Neighbours es un enfoque que evita el problema de la unidad areal modi
 SOM
 ------------
 
-Self Organized Map es un tipo de red neuronal artificial capaz de convertir relaciones estadísticas complejas y no lineales entre elementos de datos de alta dimensión en relaciones geométricas simples en una pantalla de baja dimensión. Este método aprovecha esta propiedad de SOM para realizar clustering.
+Self Organized Map es un tipo de red neuronal artificial capaz de convertir relaciones estadísticas complejas y no lineales entre elementos de datos de alta dimensión en relaciones geométricas simples de baja dimensión. Este método aprovecha esta propiedad de SOM para realizar clustering.
 
 ### Parámetros
 
@@ -113,8 +113,8 @@ Self Organized Map es un tipo de red neuronal artificial capaz de convertir rela
 
 ### Retorno
 
-- **SOM_areas_to_points**: Diccionario que para cada cluster guarda los puntos que pertenecen a este.
-- **SOM_clusters**: Arreglo con los puntos etiquetados según el cluster al que fueron asignado.
+- **SOM_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
+- **SOM_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
 ```{eval-rst}
 .. code-block:: python
@@ -131,15 +131,15 @@ TDI corresponde a un método basado en Teoría de la Información, la cual utili
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud). *TDI* no trabaja con strings y se recomienda que los datos sean tipo float.
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
-- **A**: *(Numpy matrix)* Matriz de adyacencia que representará la topología del grafo que se utilizará para realizar *Spectral clustering*. Este debe conexo y simétrico para asegurar resultados coherentes. En caso de que no se entregue ninguna matriz, se utilizará *adjacencyMatrix* para crear una. Por defecto: None
+- **A**: *(Numpy matrix)* Matriz de adyacencia que representará la topología del grafo que se utilizará para realizar *Spectral clustering*. Esta matriz debe representar un grafo conexo y simétrico para asegurar resultados coherentes. En caso de que no se entregue ninguna matriz, se utilizará *adjacencyMatrix* para crear una. Por defecto: None
 - **r**: *(float)* Distancia máxima en metros a la que se considerará a un punto como vecino (Radio del vecindario para cada punto). Por defecto: 300.0
 - **k**: *(int)* Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 5
 - **leafsize**: Corresponde al número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
-- **TDI_areas_to_points**: Diccionario que para cada cluster guarda los puntos que pertenecen a este.
-- **TDI_clusters**: Arreglo con los puntos etiquetados según el cluster al que fueron asignado.  
+- **TDI_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
+- **TDI_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.  
 
 ```{eval-rst}
 .. code-block:: python

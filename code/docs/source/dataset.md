@@ -4,7 +4,7 @@ Dataset
 Origen
 --------------
 
-El dataset originalmente corresponde a datos de unidades administrativas del censo de Santiago de Chile a nivel de manzana, las cuales contienen distintas características que fueron agrupadas en 3 categorías: Visuales, Sociales, Suelo.
+El dataset originalmente corresponde a datos de unidades administrativas del censo de Santiago de Chile y otras fuentes a nivel de manzana, las cuales contienen distintas características que fueron agrupadas en 3 categorías: Visuales, Sociales y Suelo.
 
 
 Características Visuales
@@ -12,9 +12,9 @@ Características Visuales
 
 Estas características fueron obtenidas a partir de fotografías del lugar físico correspondiente, las cuales fueron procesadas por una red neuronal de las cuales se consideraron las siguientes 6 características.
 
-    - beautiful: (float) Indica qué tanta belleza se percive en el lugar de la imagen.
+    - beautiful: (float) Indica qué tanta belleza se percibe en el lugar de la imagen.
     - boring: (float) Indica qué tan monótono se ve el lugar de la imagen.
-    - depressing: (float) Indica qué tan triste se percive el lugar de la imagen.
+    - depressing: (float) Indica qué tan triste se percibe el lugar de la imagen.
     - lively: (float) Indica qué tan vivo o emocionante se ve el lugar de la imagen.
     - safe: (float) Indica qué tan seguro se ve el lugar de la imagen.
     - wealth: (float) Indica qué tan lujoso se ve el lugar de la imagen.

@@ -7,27 +7,29 @@ Dar formato a tabla
 
 Para obtener los datos separados en variables con el formato que utilizan los métodos de la librería se ofrecen dos funciones distintas.
 
-La primera corresponde a *attributes_format* que entrega *(features_position, features_X)* donde *features_position* corresponde a un dataframe con la longitud y latitud de los datos y *features_X* que corresponde a los atributos de los datos.
+La primera corresponde a *attributes_format* que entrega los datos separados en posición (longitud, latitud) y atributos.
 
 ### Parámetros
 
-- **df**: Pandas DataFrame con los datos a utilizar.
+- **df**: *(Pandas DataFrame)* Contiene los datos a utilizar.
+
+- **zona**: *(string)* Nombre de la columna que contiene la zona a la que pertenece cada punto.
 
 ### Retorno
 
-- **features_position**: Pandas DataFrame con la longitud y latitud de los datos.
+- **features_position**: *(Pandas DataFrame)* Contiene la longitud y latitud de los datos.
 
-- **features_X**: Pandas DataFrame con los atributos de los datos (sin longitud y latitud).
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
 
 
 ```{eval-rst}
 .. code-block:: python
 
-   features_position, features_X = attributes_format(df)
+   features_position, features_X = attributes_format(df, zona = "comuna")
 
 ```
 
-La segunda corresponde a *attributes_with_zone_format* que entrega *(features_position, features_X)* donde *features_position* corresponde a un dataframe con la longitud y latitud de los datos y *features_X* que corresponde a los atributos de los datos con una columna extra que indica a qué zona pertenece el punto (en el dataset de ejemplo corresponde a la comuna).
+La segunda corresponde a *attributes_with_zone_format* que entrega los datos separados en posición (longitud, latitud) y atributos con una columna extra que indica a qué zona pertenece el punto (en el dataset de ejemplo corresponde a la comuna).
 
 ```{eval-rst}
 .. code-block:: python
@@ -39,7 +41,7 @@ La segunda corresponde a *attributes_with_zone_format* que entrega *(features_po
 Matriz de adyacencia
 ---------------------
 
-La función *adjacencyMatrix* crea una matriz de adyacencia que para cada punto almacena sus puntos más cercanos siguiendo un criterio en específico.
+La función *adjacencyMatrix* crea una matriz de adyacencia en la que cada punto es relacionado con sus vecinos más cercanos siguiendo un criterio en específico.
 
 Para crear la matriz de adyacencia se pueden usar los siguientes criterios para definir una vecindad:
 
@@ -47,7 +49,7 @@ Por k vecinos más cercanos (criterio "*k*").
 
 Por vecinos dentro de un radio r (criterio "*r*").
 
-Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos más cercanos (criterio "*rk*").
+Por vecinos dentro de un radio r, con un mínimo de k_min vecinos. En caso de que no hayan suficientes puntos para superar ese umbral, se usarán k vecinos más cercanos (criterio "*rk*").
 
 ### Parámetros
 
@@ -60,7 +62,7 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de qu
 
 ### Retorno
 
-- **A**: Matriz de adyacencia
+- **A**: *(Numpy Matrix)* Matriz de adyacencia
 
 ```{eval-rst}
 .. code-block:: python
@@ -72,9 +74,9 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de qu
 Anillos
 ------------
 
-La función rings por cada columna de *features_X* crea nuevas columnas de atributos. Cada columna nueva está asociada a una columna de los datos originales, donde cada dato de esta nueva columna corresponde a una ponderación de las características de los vecinos utilizando la columna original asociada. Para cada columna original se crearán tantas columnas como cantidad de parámetros que se hayan ingresado en *max_radios* o *max_neighbours*, considerando para cada uno la nueva definición de vecindario correspondiente.
+La función *rings* utiliza la ponderación de los datos de los vecinos de cada punto, creando una nueva columna con estos datos. Esto se repite para cada columna original del dataset, permitiendo así suavizar la diferencia de los atributos entre puntos cercanos. Para cada columna original se crearán tantas columnas como cantidad de parámetros que se hayan ingresado en *max_radios* o *max_neighbours*, considerando para cada uno la nueva definición de vecindario correspondiente.
 
-Por ejemplo: Si *max_radios* corresponde a (300, 400, 500) por cada columna de *features_X* se creará una columna que pondere definiendo vecindarios de 300 metros, luego otra columna que utilice vecindarios de 400 metros y finalmente otra columna que utilice vecindarios de 500 metros.
+Por ejemplo: Si *max_radios* corresponde a (300, 400, 500), por cada columna de *features_X* se creará una columna que pondere definiendo vecindarios de 300 metros, luego otra columna que utilice vecindarios de 400 metros y finalmente otra columna que utilice vecindarios de 500 metros.
 
 Para crear los anillos se pueden usar los siguientes criterios para definir un vecindario:
 
@@ -82,7 +84,7 @@ Para crear los anillos se pueden usar los siguientes criterios para definir un v
 
 - Por vecinos dentro de un radio r (criterio "*r*").
 
-- Por vecinos dentro de un radio r, con un mínimo de k_min vecinos, en caso de que haya menos que ese umbral se usarán k vecinos (criterio "*rk*").
+- Por vecinos dentro de un radio r, con un mínimo de k_min vecinos. En caso de que no hayan suficientes puntos para superar ese umbral, se usarán k vecinos más cercanos (criterio "*rk*").
 
 ### Parámetros
 
@@ -94,12 +96,12 @@ Para crear los anillos se pueden usar los siguientes criterios para definir un v
 - **weight_mode**: *(string)* Criterio que se utilizará para la ponderación ("*Simple*" o "*Distance Inverse*"). Por defecto: "Simple"
 - **keep_original_value**: *(bool)* Determinará si se conservan las columnas originales o no. Por defecto: True
 - **smoothing**: *(float)* Parámetro que se utiliza para suavizar las distancias al momento de ponderar los datos (útil en caso de ponderar con el inverso de la distancia, en caso de que estas sean muy cercanas a 0). Por defecto: 1e-08
-- **normalize**: *(bool)* Determina si se normalizan las distancias, lo cual evita que al ponderar por el inverso de la distancia algunos datos se inflen más de lo deseado. Por defecto: True
+- **normalize**: *(bool)* Determina si se normalizan las distancias, lo cual evita que al ponderar por el inverso de la distancia algunos datos sean sobrerrepresentados. Por defecto: True
 - **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
-- **features_X1**: Pandas DataFrame con las nuevas columnas creadas.
+- **features_X1**: *(Pandas DataFrame)* Contiene las nuevas columnas creadas.
 
 ```{eval-rst}
 .. code-block:: python
