@@ -23,7 +23,7 @@ La primera corresponde a *attributes_format* que entrega los datos separados en 
 ```{eval-rst}
 .. code-block:: python
 
-   features_position, features_X = attributes_format(df, zona = "comuna")
+   features_position, features_X = attributes_format(df)
 
 ```
 
@@ -44,7 +44,7 @@ La segunda corresponde a *attributes_with_zone_format* que entrega los datos sep
 ```{eval-rst}
 .. code-block:: python
 
-   features_position, features_X = attributes_with_zone_format(df)
+   features_position, features_X = attributes_with_zone_format(df, zona = "comuna")
 ```
 
 
