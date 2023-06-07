@@ -13,8 +13,6 @@ La primera corresponde a *attributes_format* que entrega los datos separados en 
 
 - **df**: *(Pandas DataFrame)* Contiene los datos a utilizar.
 
-- **zona**: *(string)* Nombre de la columna que contiene la zona a la que pertenece cada punto.
-
 ### Retorno
 
 - **features_position**: *(Pandas DataFrame)* Contiene la longitud y latitud de los datos.
@@ -29,7 +27,19 @@ La primera corresponde a *attributes_format* que entrega los datos separados en 
 
 ```
 
-La segunda corresponde a *attributes_with_zone_format* que entrega los datos separados en posición (longitud, latitud) y atributos con una columna extra que indica a qué zona pertenece el punto (en el dataset de ejemplo corresponde a la comuna).
+La segunda corresponde a *attributes_with_zone_format* que entrega los datos separados en posición (longitud, latitud) y atributos con una columna extra que indica a qué zona pertenece cada punto (en el dataset de ejemplo corresponde a la comuna).
+
+### Parámetros
+
+- **df**: *(Pandas DataFrame)* Contiene los datos a utilizar.
+
+- **zona**: *(string)* Nombre de la columna que contiene la zona a la que pertenece cada punto.
+
+### Retorno
+
+- **features_position**: *(Pandas DataFrame)* Contiene la longitud y latitud de los datos.
+
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos incluyendo la columna de zona (sin longitud y latitud).
 
 ```{eval-rst}
 .. code-block:: python
