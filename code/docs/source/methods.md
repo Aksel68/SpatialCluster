@@ -80,8 +80,8 @@ K-Nearest Neighbours es un enfoque que evita el problema de la unidad espacial m
 - **threshold**: *(float/int/bool)* Umbral que determina si un dato cumple o no con el criterio según su columna *attribute*.
 - **location**: *(string)* Nombre de la columna de *features_X* que se utilizará para determinar la localización a la que pertenecen los datos (Por ejemplo: "comuna").
 - **condition**: *(string)* Operador que se utilizará (">", "<", ">=", "<=", "==") para ver si el dato cumple con la condición o no. Por defecto: ">"
-- **k**: *(int)* Cantidad de vecinos cercanos que se utilizarán para la unidad de área más pequeña. Por defecto: 5
-- **K**: *(int)* Cantidad de vecinos cercanos que se utilizarán para la unidad de área más grande. Por defecto: 30
+- **k**: *(int)* Cantidad de vecinos cercanos que se utilizarán para la unidad de área más pequeña. Por defecto: 1500
+- **K**: *(int)* Cantidad de vecinos cercanos que se utilizarán para la unidad de área más grande. Por defecto: 5000
 - **alfa**: *(float)* Umbral para evaluar si el dato corresponde a un *cold spot* o *hot spot* con una significancia estadística. Por defecto: 0.01
 - **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
