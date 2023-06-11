@@ -70,7 +70,6 @@ Para tener acceso al dataset basta con usar la siguiente función:
 
 ```{eval-rst}
 .. code-block:: python
-
    from SpatialCluster.datasets import load_manzana_data
    df = load_manzana_data()
 ```
@@ -81,7 +80,6 @@ Si se desea usar el método KNN, se debe utilizar esta función.
 
 ```{eval-rst}
 .. code-block:: python
-
    from SpatialCluster.preprocess.data_format import attributes_with_zone_format
    features_position, features_X = attributes_with_zone_format(df)
 ```
@@ -90,7 +88,6 @@ Si se desea usar cualquier otro método que ofrece SpatialCluster, se debe utili
 
 ```{eval-rst}
 .. code-block:: python
-
    from SpatialCluster.preprocess.data_format import attributes_format
    features_position, features_X = attributes_format(df)
 ```

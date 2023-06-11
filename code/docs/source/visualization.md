@@ -9,7 +9,7 @@ El siguiente método genera el mapa con todos los puntos, coloreados según el c
 ### Parámetros
 
 - **gdf**: *(GeoPandas DataFrame)* Contiene los clusters a los que pertenece cada punto y la geometría para localizarlos geográficamente en el mapa. En caso de que la columna "geometry" no exista, el método la generará a partir de las columnas "lon" y "lat".
-- **markersize**: *(Int)* Tamaño de los puntos en el mapa. Por defecto: 30
+- **markersize**: *(int)* Tamaño de los puntos en el mapa. Por defecto: 30
 - **figsize**: *(Tupla de ints)* Tamaño de la figura que contendrá el mapa. Por defecto: (12,8)
 - **path**: *(string)* Indica la ruta y el nombre que se usará para guardar el archivo (ej: "/mapas/mapa.png"). Por defecto: None
 
@@ -19,7 +19,7 @@ El siguiente método genera el mapa con todos los puntos, coloreados según el c
 
 ```{eval-rst}
 .. code-block:: python
-
+   from SpatialCluster.visualization.plotters import plot_map
    plot_map(gdf, markersize=30, figsize=(12,8))
 ```
 
@@ -43,7 +43,6 @@ El siguiente método genera un mapa interactivo con un muestreo aleatorio de los
 
 ```{eval-rst}
 .. code-block:: python
-
+   from SpatialCluster.visualization.plotters import plot_map_sample
    hmap = plot_map_sample(areas_to_points, min_supp=min_supp, max_samples_per_clusters=max_samples_per_clusters, location=location, radius=radius)
-   hmap
 ```

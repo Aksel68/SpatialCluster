@@ -17,14 +17,13 @@ La primera corresponde a *attributes_format* que entrega los datos separados en 
 
 - **features_position**: *(Pandas DataFrame)* Contiene la longitud y latitud de los datos.
 
-- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud ni latitud).
 
 
 ```{eval-rst}
 .. code-block:: python
-
+   from SpatialCluster.preprocess.data_format import attributes_format
    features_position, features_X = attributes_format(df)
-
 ```
 
 La segunda corresponde a *attributes_with_zone_format* que entrega los datos separados en posición (longitud, latitud) y atributos con una columna extra que indica a qué zona pertenece cada punto (en el dataset de ejemplo corresponde a la comuna).
@@ -39,11 +38,11 @@ La segunda corresponde a *attributes_with_zone_format* que entrega los datos sep
 
 - **features_position**: *(Pandas DataFrame)* Contiene la longitud y latitud de los datos.
 
-- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos incluyendo la columna de zona (sin longitud y latitud).
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos incluyendo la columna de zona (sin longitud ni latitud).
 
 ```{eval-rst}
 .. code-block:: python
-
+   from SpatialCluster.preprocess.data_format import attributes_with_zone_format
    features_position, features_X = attributes_with_zone_format(df, zona = "comuna")
 ```
 
@@ -63,8 +62,8 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos. En caso de qu
 
 ### Parámetros
 
-- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
-- **r**: *(float)* Distancia máxima en metros a la que se considerará a un punto como vecino (Radio del vecindario para cada punto). Por defecto: 300.0
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud ni latitud).
+- **r**: *(float)* Distancia máxima en metros a la que se considerará a un punto como vecino (radio del vecindario para cada punto). Por defecto: 300.0
 - **k**: *(int)* Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 5
 - **min_k**: *(int)* Cantidad mínima de vecinos que debe tener el vecindario en caso de usar el criterio "*rk*". Por defecto: 2
 - **criteria**: *(string)* Criterio que se usará para determinar los vecindarios (*k*, *r*, *rk*). Por defecto: "k"
@@ -76,7 +75,7 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos. En caso de qu
 
 ```{eval-rst}
 .. code-block:: python
-
+   from SpatialCluster.preprocess.adjacency import adjacencyMatrix
    A = adjacencyMatrix(features_position, r = 300.0, k = 5, min_k = 2, criteria = "k", directed = True, leafsize = 10)
 ```
 
@@ -98,7 +97,7 @@ Para crear los anillos se pueden usar los siguientes criterios para definir un v
 
 ### Parámetros
 
-- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud y latitud).
+- **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud ni latitud).
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
 - **criteria**: *(string)* Criterio que se usará para determinar los vecindarios (*k*, *r*, *rk*). Por defecto: "k"
 - **max_radios**: *(Lista de floats)* Lista de radios en metros que se utilizarán para definir los vecindarios. Por defecto: [200.0, 300.0, 400.0]
@@ -111,11 +110,11 @@ Para crear los anillos se pueden usar los siguientes criterios para definir un v
 
 ### Retorno
 
-- **features_X1**: *(Pandas DataFrame)* Contiene las nuevas columnas creadas.
+- **features_rings**: *(Pandas DataFrame)* Contiene las nuevas columnas creadas.
 
 ```{eval-rst}
 .. code-block:: python
-
-   features_X1 = rings(features_X, features_position, criteria="k", max_radios=[200.0, 300.0, 400.0], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10)
+   from SpatialCluster.preprocess.rings import rings
+   features_rings = rings(features_X, features_position, criteria="k", max_radios=[200.0, 300.0, 400.0], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10)
 ```
 
