@@ -54,7 +54,7 @@ Este método permite utilizar una distribución de probabilidad del modelo de me
 
 Por defecto: "full"
 
-- **tol**: *(float)* Umbral de tolerancia. Las iteraciones del proceso Expectation-Maximization (EM) pararán cuando la ganancia promedio del límite inferior esté por debajo de este umbral. Por defecto: 1e-3
+- **tol**: *(float)* Umbral de tolerancia. Las iteraciones del proceso Expectation-Maximization (EM) pararán cuando la ganancia promedio de la cota inferior esté por debajo de este umbral. Por defecto: 1e-3
 - **reg_covar**: *(float)* Parámetro no negativo para la regularización añadida a la diagonal de la matriz de covarianza. Permite asegurar que las matrices de covarianza sean positivas. Por defecto: 1e-6
 
 ### Retorno
