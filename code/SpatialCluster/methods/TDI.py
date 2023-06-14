@@ -9,23 +9,18 @@ import pandas as pd
 import numpy as np
 import scipy as sp
 
-import time
-
-def TDI_Clustering(features_X, features_position, A = None, r=300.0, k=5, leafsize=10):
-    a = time.time()
+def TDI_Clustering(features_X, features_position, n_clusters = 4, A = None, k = 20, leafsize = 10):
     features_X = numpy_data_format(features_X)
     features_position = position_data_format(features_position)
     scaler = MinMaxScaler()
     new_features = pd.DataFrame(scaler.fit_transform(features_X))
     criteria = "k"
+    r = 300.0
     directed = False
     if(A == None):
         A = adjacencyMatrix(features_position, r=r, k=k, criteria=criteria, directed=directed, leafsize=leafsize)
     mat = IncrementalCOOMatrix(A.shape, np.float64)
-    rows, cols, values = sp.sparse.find(A)
-    b = time.time()
-    print("First Part:", b-a)
-    c = time.time()
+    rows, cols, _ = sp.sparse.find(A)
     for i in range(rows.shape[0]):
         v1_pos = rows[i]
         v2_pos = cols[i]
@@ -37,20 +32,10 @@ def TDI_Clustering(features_X, features_position, A = None, r=300.0, k=5, leafsi
         if np.isnan(dist):
             dist = 0
         mat.append(v1_pos, v2_pos, dist)
-    d = time.time()
-    print("Matriz de pesos:", d-c)
-    e = time.time()
+        mat.append(v2_pos, v1_pos, dist)
     mat = mat.tocoo() # weight matrix
     mat = mat.tocsr()
-    f = time.time()
-    print("Transformar matriz:", f-e)
-    g = time.time()
-    clusters = spectral_clustering(mat)
-    h = time.time()
-    print("Spectral clustering:", h-g)
-    i = time.time()
+    clusters = spectral_clustering(mat, n_clusters = n_clusters)
     points = list(zip(features_position.lon, features_position.lat))
     areas_to_points = get_areas(clusters, points)
-    j = time.time()
-    print("Areas to points:", j-i)
     return areas_to_points, clusters

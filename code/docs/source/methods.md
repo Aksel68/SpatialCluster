@@ -105,7 +105,7 @@ Self Organized Map es un tipo de red neuronal artificial capaz de convertir rela
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud ni latitud). *SOM* no trabaja con strings y se recomienda que los datos sean tipo float.
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
-- **som_shape**: *(tupla de ints)* Determina la topología de la red neuronal que usará SOM de la forma (cantidad_filas, cantidad_columnas). Por defecto: (6,6)
+- **som_shape**: *(tupla de ints)* Determina la topología de la red neuronal que usará SOM de la forma (cantidad_filas, cantidad_columnas). Por defecto: (2,2)
 - **sigma**: *(float)* Dispersión de la función de vecindad, debe ser adecuada a la dimensión de SOM utilizada. Por defecto: 0.3
 - **learning_rate**: *(float)* Parámetro dentro del rango [0,1] que corresponde a la cantidad de información inicial que se compartirá entre neuronas en cada iteración del proceso de entrenamiento de la red. Por defecto: 0.5
 - **num_iterations**: *(int)* Cantidad de iteraciones que se realizarán en el proceso de entrenamiento. Por defecto: 100
@@ -118,7 +118,7 @@ Self Organized Map es un tipo de red neuronal artificial capaz de convertir rela
 ```{eval-rst}
 .. code-block:: python
    from SpatialCluster.methods.SOM import SOM_Clustering
-   SOM_areas_to_points, SOM_clusters = SOM_Clustering(features_X, features_position, som_shape = (6,6), sigma=0.3, learning_rate=0.5, num_iterations = 100)
+   SOM_areas_to_points, SOM_clusters = SOM_Clustering(features_X, features_position, som_shape = (2,2), sigma=0.3, learning_rate=0.5, num_iterations = 100)
 ```
 
 TDI
@@ -130,9 +130,9 @@ TDI corresponde a un método basado en Teoría de la Información, la cual utili
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud ni latitud). *TDI* no trabaja con strings y se recomienda que los datos sean tipo float.
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
+- **n_clusters**: *(int)* Indica la cantidad de clusters que considerará el método para agrupar los datos. Por defecto: 4
 - **A**: *(Numpy matrix)* Matriz de adyacencia que representará la topología del grafo que se utilizará para realizar *Spectral clustering*. Esta matriz debe representar un grafo conexo y simétrico para asegurar resultados coherentes. En caso de que no se entregue ninguna matriz, se utilizará *adjacencyMatrix* para crear una. Por defecto: None
-- **r**: *(float)* Distancia máxima en metros a la que se considerará a un punto como vecino (radio del vecindario para cada punto). Por defecto: 300.0
-- **k**: *(int)* Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 5
+- **k**: *(int)* Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 20
 - **leafsize**: Corresponde al número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta (https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
@@ -143,5 +143,5 @@ TDI corresponde a un método basado en Teoría de la Información, la cual utili
 ```{eval-rst}
 .. code-block:: python
    from SpatialCluster.methods.TDI import TDI_Clustering
-   TDI_areas_to_points, TDI_clusters = TDI_Clustering(features_X, features_position, A=A, r=radius, k=k, leafsize=leafsize)
+   TDI_areas_to_points, TDI_clusters = TDI_Clustering(features_X, features_position, n_clusters=4, A=A, k=20, leafsize=10)
 ```
