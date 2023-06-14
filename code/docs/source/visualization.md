@@ -20,7 +20,7 @@ El siguiente método genera el mapa con todos los puntos, coloreados según el c
 ```{eval-rst}
 .. code-block:: python
    from SpatialCluster.visualization.plotters import plot_map
-   plot_map(gdf, markersize=30, figsize=(12,8))
+   plot_map(gdf, markersize=30, figsize=(12,8), path=None)
 ```
 
 Graficar Muestreo aleatorio
@@ -44,5 +44,5 @@ El siguiente método genera un mapa interactivo con un muestreo aleatorio de los
 ```{eval-rst}
 .. code-block:: python
    from SpatialCluster.visualization.plotters import plot_map_sample
-   hmap = plot_map_sample(areas_to_points, min_supp=min_supp, max_samples_per_clusters=max_samples_per_clusters, location=location, radius=radius)
+   hmap = plot_map_sample(areas_to_points, min_supp=min_supp, max_samples_per_clusters=max_samples_per_clusters, location=location, radius=radius, path=None)
 ```
