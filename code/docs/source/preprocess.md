@@ -20,8 +20,7 @@ La primera corresponde a *attributes_format* que entrega los datos separados en 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud ni latitud).
 
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.preprocess.data_format import attributes_format
    features_position, features_X = attributes_format(df)
 ```
@@ -40,8 +39,7 @@ La segunda corresponde a *attributes_with_zone_format* que entrega los datos sep
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos incluyendo la columna de zona (sin longitud ni latitud).
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.preprocess.data_format import attributes_with_zone_format
    features_position, features_X = attributes_with_zone_format(df, zona = "comuna")
 ```
@@ -73,8 +71,7 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos. En caso de qu
 
 - **A**: *(Numpy Matrix)* Matriz de adyacencia
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.preprocess.adjacency import adjacencyMatrix
    A = adjacencyMatrix(features_position, r = 300.0, k = 5, min_k = 2, criteria = "k", directed = True, leafsize = 10)
 ```
@@ -112,8 +109,7 @@ Para crear los anillos se pueden usar los siguientes criterios para definir un v
 
 - **features_rings**: *(Pandas DataFrame)* Contiene las nuevas columnas creadas.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.preprocess.rings import rings
    features_rings = rings(features_X, features_position, criteria="k", max_radios=[200.0, 300.0, 400.0], max_neighbours=[200, 500, 1000], weight_mode="Simple", keep_original_value=True, smoothing=1e-08, normalize=True, leafsize=10)
 ```

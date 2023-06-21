@@ -25,8 +25,7 @@ Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en 
 - **DMoN_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
 - **DMoN_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.methods.DMoN import DMoN_Clustering
    DMoN_areas_to_points, DMoN_clusters = DMoN_Clustering(features_X, features_position, A = None, criteria = "k", r_max = 300.0, n_clusters = 4, reg = 1.0, dropout = 0.0, num_epochs = 500, learning_rate = 0.001)
 
@@ -62,8 +61,7 @@ Por defecto: "full"
 - **GMM_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
 - **GMM_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.methods.GMM import GMM_Clustering
    GMM_areas_to_points, GMM_clusters = GMM_Clustering(features_X, features_position, n_clusters = 4, covariance_type = "full", tol=1e-3, reg_covar=1e-6)
 ```
@@ -90,8 +88,7 @@ K-Nearest Neighbours es un enfoque que evita el problema de la unidad espacial m
 - **KNN_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
 - **KNN_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.methods.KNN import KNN_Clustering
    KNN_areas_to_points, KNN_clusters = KNN_Clustering(features_X, features_position, attribute, threshold, location, condition=">", k=5, K=30, alfa = 0.01, leafsize=10)
 ```
@@ -115,8 +112,7 @@ Self Organized Map es un tipo de red neuronal artificial capaz de convertir rela
 - **SOM_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
 - **SOM_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.methods.SOM import SOM_Clustering
    SOM_areas_to_points, SOM_clusters = SOM_Clustering(features_X, features_position, som_shape = (2,2), sigma=0.3, learning_rate=0.5, num_iterations = 100)
 ```
@@ -140,8 +136,7 @@ TDI corresponde a un método basado en Teoría de la Información, la cual utili
 - **TDI_areas_to_points**: *(dict)* Para cada cluster guarda los puntos que pertenecen a este.
 - **TDI_clusters**: *(Numpy Array)* Contiene los puntos etiquetados según el cluster al que fueron asignado.  
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.methods.TDI import TDI_Clustering
    TDI_areas_to_points, TDI_clusters = TDI_Clustering(features_X, features_position, n_clusters=4, A=A, k=20, leafsize=10)
 ```

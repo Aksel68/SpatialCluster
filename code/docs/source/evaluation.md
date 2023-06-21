@@ -17,8 +17,7 @@ Para comparar dos clusterings de mapas de atributos se puede usar la función AR
 
 - **ARI**: *(float)* ARI score.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.evaluation.ARI import ARI
    ari = ARI(clustering_1, clustering_2)
 ```
@@ -34,8 +33,7 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 
 - **ARI_matr**: *(Numpy Matrix)* Contiene el ARI score para cada par de clusterings.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.evaluation.ARI import ARI_matrix
    ari_matr = ARI_matrix(clusterings, plot=True)
 ```
@@ -55,8 +53,7 @@ Para comparar dos clusterings de mapas de atributos se puede usar la función AM
 
 - **AMI**: *(float)* AMI score.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.evaluation.AMI import AMI
    ami = AMI(clusters_map1, clusters_map2)
 ```
@@ -72,8 +69,7 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 
 - **AMI_matr**: *(Numpy Matrix)* Contiene el AMI score para cada par de clusterings.
 
-```{eval-rst}
-.. code-block:: python
+```
    from SpatialCluster.evaluation.AMI import AMI_matrix
    ami_matr = AMI_matrix(clusterings, plot=True)
 ```
