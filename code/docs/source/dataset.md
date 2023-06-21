@@ -68,16 +68,19 @@ Uso
 
 Para tener acceso al dataset basta con usar la siguiente función:
 
-```python
+```
+
    from SpatialCluster.datasets import load_manzana_data
    df = load_manzana_data()
+
 ```
 
 Luego dependiendo del método que se quiera usar, se puede dar el formato correspondiente con las siguientes funciones:
 
 Si se desea usar el método KNN, se debe utilizar esta función.
 
-```python
+```
+
    from SpatialCluster.preprocess.data_format import attributes_with_zone_format
    features_position, features_X = attributes_with_zone_format(df)
 
@@ -85,7 +88,8 @@ Si se desea usar el método KNN, se debe utilizar esta función.
 
 Si se desea usar cualquier otro método que ofrece SpatialCluster, se debe utilizar esta función.
 
-```python
+```
+
    from SpatialCluster.preprocess.data_format import attributes_format
    features_position, features_X = attributes_format(df)
 
