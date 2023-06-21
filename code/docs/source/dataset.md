@@ -82,6 +82,7 @@ Si se desea usar el método KNN, se debe utilizar esta función.
 .. code-block:: python
    from SpatialCluster.preprocess.data_format import attributes_with_zone_format
    features_position, features_X = attributes_with_zone_format(df)
+
 ```
 
 Si se desea usar cualquier otro método que ofrece SpatialCluster, se debe utilizar esta función.
@@ -90,4 +91,5 @@ Si se desea usar cualquier otro método que ofrece SpatialCluster, se debe utili
 .. code-block:: python
    from SpatialCluster.preprocess.data_format import attributes_format
    features_position, features_X = attributes_format(df)
+   
 ```
