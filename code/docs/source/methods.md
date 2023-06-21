@@ -28,7 +28,6 @@ Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en 
 ```
    from SpatialCluster.methods.DMoN import DMoN_Clustering
    DMoN_areas_to_points, DMoN_clusters = DMoN_Clustering(features_X, features_position, A = None, criteria = "k", r_max = 300.0, n_clusters = 4, reg = 1.0, dropout = 0.0, num_epochs = 500, learning_rate = 0.001)
-
 ```
 
 GMM

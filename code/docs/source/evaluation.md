@@ -26,12 +26,12 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 
 ### Parámetros
 
-- **clusterings**: *(Numpy Matrix)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
+- **clusterings**: *(Pandas DataFrame)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
 - **plot**: *(bool)* Indica si se desea mostrar la matriz gráficamente.
 
 ### Retorno
 
-- **ARI_matr**: *(Numpy Matrix)* Contiene el ARI score para cada par de clusterings.
+- **ARI_matr**: *(Pandas DataFrame)* Contiene el ARI score para cada par de clusterings.
 
 ```
    from SpatialCluster.evaluation.ARI import ARI_matrix
@@ -62,12 +62,12 @@ En caso de que se quieran comparar más de un par de mapas a la vez, se puede ge
 
 ### Parámetros
 
-- **clusterings**: *(Numpy Matrix)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
+- **clusterings**: *(Pandas DataFrame)* Contiene los clusters a los que pertenece cada punto para los distintos clusterings a comparar.
 - **plot**: *(bool)* Indica si se desea mostrar la matriz gráficamente.
 
 ### Retorno
 
-- **AMI_matr**: *(Numpy Matrix)* Contiene el AMI score para cada par de clusterings.
+- **AMI_matr**: *(Pandas DataFrame)* Contiene el AMI score para cada par de clusterings.
 
 ```
    from SpatialCluster.evaluation.AMI import AMI_matrix
