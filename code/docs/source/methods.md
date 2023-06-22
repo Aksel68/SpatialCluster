@@ -89,7 +89,7 @@ K-Nearest Neighbours es un enfoque que evita el problema de la unidad espacial m
 
 ```
    from SpatialCluster.methods.KNN import KNN_Clustering
-   KNN_areas_to_points, KNN_clusters = KNN_Clustering(features_X, features_position, attribute, threshold, location, condition=">", k=5, K=30, alfa = 0.01, leafsize=10)
+   KNN_areas_to_points, KNN_clusters = KNN_Clustering(features_X, features_position, attribute, threshold, location, condition=">", k=1500, K=5000, alfa = 0.01, leafsize=10)
 ```
 
 SOM
