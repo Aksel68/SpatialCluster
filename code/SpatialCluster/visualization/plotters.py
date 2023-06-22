@@ -11,7 +11,7 @@ import random
 
 def plot_map(df, markersize = 10, figsize = (12,8), path = None):
     if("geometry" not in df.columns):
-        gdf = geopandas.GeoDataFrame(df, geometry=geopandas.points_from_xy(df['lon'], df['lat']))
+        gdf = geopandas.GeoDataFrame(df, geometry=geopandas.points_from_xy(df['lon'], df['lat']), crs=4326)
     else:
         gdf = geopandas.GeoDataFrame(df, geometry='geometry', crs=4326)
     n_clusters = np.unique(gdf["clusters"]).shape[0]
