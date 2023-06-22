@@ -4,7 +4,7 @@ Métodos
 DMoN
 ------------
 
-Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en este caso para realizar clustering no supervisado, se enfoca en optimizar la modularidad, la cual corresponde a una medida usada para determinar la calidad del clustering. [XD](https://www.youtube.com)
+Deep Modular Neural network es una red neuronal basada en grafos (GNN) usada en este caso para realizar clustering no supervisado, se enfoca en optimizar la modularidad, la cual corresponde a una medida usada para determinar la calidad del clustering.
 
 ### Parámetros
 
@@ -80,7 +80,7 @@ K-Nearest Neighbours es un enfoque que evita el problema de la unidad espacial m
 - **k**: *(int)* Cantidad mínima de vecinos cercanos que se utilizarán para la unidad de área más pequeña. Por defecto: 1500
 - **K**: *(int)* Cantidad mínima de vecinos cercanos que se utilizarán para la unidad de área más grande. Por defecto: 5000
 - **alfa**: *(float)* Umbral para evaluar si el dato corresponde a un *cold spot* o *hot spot* con una significancia estadística. Por defecto: 0.01
-- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
+- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta. Para más información, revisar la [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
@@ -128,7 +128,7 @@ TDI corresponde a un método basado en Teoría de la Información, la cual utili
 - **n_clusters**: *(int)* Indica la cantidad de clusters que considerará el método para agrupar los datos. Por defecto: 4
 - **A**: *(Numpy matrix)* Matriz de adyacencia que representará la topología del grafo que se utilizará para realizar *Spectral clustering*. Esta matriz debe representar un grafo conexo y simétrico para asegurar resultados coherentes. En caso de que no se entregue ninguna matriz, se utilizará *adjacencyMatrix* para crear una. Por defecto: None
 - **k**: *(int)* Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 20
-- **leafsize**: Corresponde al número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
+- **leafsize**: Corresponde al número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta. Para más información, revisar la [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 

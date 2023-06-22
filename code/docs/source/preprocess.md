@@ -65,7 +65,7 @@ Por vecinos dentro de un radio r, con un mínimo de k_min vecinos. En caso de qu
 - **k**: *(int)* Cantidad de vecinos máxima que tendrá el vecindario para cada punto. Por defecto: 5
 - **min_k**: *(int)* Cantidad mínima de vecinos que debe tener el vecindario en caso de usar el criterio "*rk*". Por defecto: 2
 - **criteria**: *(string)* Criterio que se usará para determinar los vecindarios (*k*, *r*, *rk*). Por defecto: "k"
-- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
+- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta. Para más información, revisar la [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
@@ -103,7 +103,7 @@ Para crear los anillos se pueden usar los siguientes criterios para definir un v
 - **keep_original_value**: *(bool)* Determinará si se conservan las columnas originales o no. Por defecto: True
 - **smoothing**: *(float)* Parámetro que se utiliza para suavizar las distancias al momento de ponderar los datos (útil en caso de ponderar con el inverso de la distancia, en caso de que estas sean muy cercanas a 0). Por defecto: 1e-08
 - **normalize**: *(bool)* Determina si se normalizan las distancias, lo cual evita que al ponderar por el inverso de la distancia algunos datos sean sobrerrepresentados. Por defecto: True
-- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
+- **leafsize**: *(int)* Número de puntos en los que el algoritmo de KDTree de cambia a fuerza bruta. Para más información, revisar la [Documentación de KDTree](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.KDTree.html). Por defecto: 10
 
 ### Retorno
 
