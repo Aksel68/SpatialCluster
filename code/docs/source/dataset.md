@@ -79,7 +79,7 @@ Si se desea usar el método KNN, se debe utilizar esta función.
 
 ```
    from SpatialCluster.preprocess.data_format import attributes_with_zone_format
-   features_position, features_X = attributes_with_zone_format(df)
+   features_position, features_X = attributes_with_zone_format(df, zona = "comuna")
 ```
 
 Si se desea usar cualquier otro método que ofrece SpatialCluster, se debe utilizar esta función.
