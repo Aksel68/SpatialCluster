@@ -9,7 +9,7 @@ def KNN_Clustering(features_X, features_position, attribute, threshold, location
     features_X = data_format(features_X)
     features_position = position_data_format(features_position)
     if(k > K):
-        raise Exception('k has to be greater than K')
+        raise Exception('K has to be greater than k')
     features_X = pd.concat([features_position, features_X], axis=1)
     t = []
     f = []
@@ -31,7 +31,6 @@ def KNN_Clustering(features_X, features_position, attribute, threshold, location
         x_centroid.append((df["lon"].mean(), df["lat"].mean()))
     tree = spatial.KDTree(data = x_centroid, leafsize = leafsize)
     NK = tree.query(x_centroid, k = len(x_centroid))[1]
-
     Tk = []
     Fk = []
     TK = []
@@ -63,7 +62,6 @@ def KNN_Clustering(features_X, features_position, attribute, threshold, location
         p_hot.append(b1-a1)
         b = hpd.cdf(Fk[j])
         p_cold.append(b)
-
     centroid_clusters = {}
     for i in range(len(x_centroid)):
         if(p_hot[i] < alfa):
@@ -72,11 +70,9 @@ def KNN_Clustering(features_X, features_position, attribute, threshold, location
             centroid_clusters[x_name[i]] = -1
         else:
             centroid_clusters[x_name[i]] = 0
-    
     clusters = np.zeros(features_X.shape[0])
     for i, row in features_X.iterrows():
         clusters[i] = centroid_clusters[row[location]]
-
     points = list(zip(features_X.lon, features_X.lat))
     areas_to_points = get_areas(clusters, points)
     return areas_to_points, clusters
