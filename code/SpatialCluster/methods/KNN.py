@@ -5,7 +5,7 @@ from scipy import spatial
 import pandas as pd
 import numpy as np
 
-def KNN_Clustering(features_X, features_position, attribute, threshold, location, condition=">", k=1500, K=5000, alfa = 0.01, leafsize=10):
+def KNN_Clustering(features_X, features_position, attribute, threshold, location, condition="<", k=1500, K=5000, alfa = 0.01, leafsize=10):
     features_X = data_format(features_X)
     features_position = position_data_format(features_position)
     if(k > K):

@@ -10,7 +10,7 @@ def ARI(clustering_1, clustering_2):
     clustering_2 = numpy_data_format(clustering_2)
     return adjusted_rand_score(clustering_1, clustering_2)
 
-def ARI_matrix(clusterings, plot=True, figsize = (10,10), linewidth=1):
+def ARI_matrix(clusterings, plot=True, figsize = (10,8), linewidth=1):
     clusterings = data_format(clusterings)
     ARS_array = []
     len_columns = len(clusterings.columns)
@@ -20,13 +20,15 @@ def ARI_matrix(clusterings, plot=True, figsize = (10,10), linewidth=1):
             df_cluster_1 = clusterings[cluster_1]
             df_cluster_2 = clusterings[cluster_2]
             ARS = adjusted_rand_score(df_cluster_1, df_cluster_2)
-            ARS_array.append([cluster_1, cluster_2, ARS])
-            ARS_df = pd.DataFrame(ARS_array)
-            ARS_df_pivot = ARS_df.pivot(index=0, columns=1, values=2,).fillna(0)
+            ARS_array.append([cluster_2, cluster_1, ARS])
+    ARS_df = pd.DataFrame(ARS_array)
+    ARS_df_pivot = ARS_df.pivot(index=0, columns=1, values=2,).fillna(0)
     if(plot):
         plt.figure(figsize = figsize)
         mask = np.zeros_like(ARS_df_pivot)
         mask[np.triu_indices_from(mask)] = True
+        for i in range(mask.shape[0]):
+            mask[i,i] = False
         g = sns.heatmap(
             ARS_df_pivot, 
             cmap='OrRd',

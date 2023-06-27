@@ -76,7 +76,7 @@ K-Nearest Neighbours es un enfoque que evita el problema de la unidad espacial m
 - **attribute**: *(string)* Indica qué columna de *features_X* se utilizará para caracterizar a los datos.
 - **threshold**: *(float/int/bool)* Umbral que determina si un dato cumple con el criterio según su columna *attribute*.
 - **location**: *(string)* Nombre de la columna de *features_X* que se utilizará para determinar la localización a la que pertenecen los datos (Por ejemplo: "comuna").
-- **condition**: *(string)* Operador que se utilizará (">", "<", ">=", "<=", "==") para ver si el dato cumple con la condición o no. Por defecto: ">"
+- **condition**: *(string)* Operador que se utilizará (">", "<", ">=", "<=", "==") para ver si el dato cumple con la condición o no. Por defecto: "<"
 - **k**: *(int)* Cantidad mínima de vecinos cercanos que se utilizarán para la unidad de área más pequeña. Por defecto: 1500
 - **K**: *(int)* Cantidad mínima de vecinos cercanos que se utilizarán para la unidad de área más grande. Por defecto: 5000
 - **alfa**: *(float)* Umbral para evaluar si el dato corresponde a un *cold spot* o *hot spot* con una significancia estadística. Por defecto: 0.01
@@ -89,7 +89,7 @@ K-Nearest Neighbours es un enfoque que evita el problema de la unidad espacial m
 
 ```
    from SpatialCluster.methods.KNN import KNN_Clustering
-   KNN_areas_to_points, KNN_clusters = KNN_Clustering(features_X, features_position, attribute, threshold, location, condition=">", k=1500, K=5000, alfa = 0.01, leafsize=10)
+   KNN_areas_to_points, KNN_clusters = KNN_Clustering(features_X, features_position, attribute, threshold, location, condition="<", k=1500, K=5000, alfa = 0.01, leafsize=10)
 ```
 
 SOM
