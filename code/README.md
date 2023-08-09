@@ -16,6 +16,10 @@ Install using `pip`!
 $ pip install SpatialCluster
 ```
 
-## Documentation
+## Documentation in English
+
+https://spatial-cluster-english-doc.readthedocs.io/en/latest/
+
+## Documentation in Spanish
 
 https://spatialcluster.readthedocs.io/en/latest/

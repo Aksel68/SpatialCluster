@@ -26,7 +26,7 @@ def AMI_matrix(clusterings, plot=True, figsize = (10,8), linewidth=1):
     if(plot):
         plt.figure(figsize = figsize)
         mask = np.zeros_like(NMI_df_pivot)
-        mask[np.tril_indices_from(mask)] = True
+        mask[np.triu_indices_from(mask)] = True
         for i in range(mask.shape[0]):
             mask[i,i] = False
         g = sns.heatmap(

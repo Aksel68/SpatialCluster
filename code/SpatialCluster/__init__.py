@@ -2,7 +2,7 @@
 Init file for the SpatialCluster library.
 """
 
-version_info = (0, 0, 80)
+version_info = (0, 0, 82)
 __version__ = ".".join([str(x) for x in version_info])
 
 __all__ = [
