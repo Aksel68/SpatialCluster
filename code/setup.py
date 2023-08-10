@@ -7,7 +7,7 @@ from pathlib import Path
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
-VERSION = '0.0.82'
+VERSION = '0.0.83'
 DESCRIPTION = 'Spatial cluster package'
 
 # Setting up
