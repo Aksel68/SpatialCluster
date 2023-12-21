@@ -76,5 +76,3 @@ def KNN_Clustering(features_X, features_position, attribute, threshold, location
     points = list(zip(features_X.lon, features_X.lat))
     areas_to_points = get_areas(clusters, points)
     return areas_to_points, clusters
-
-    

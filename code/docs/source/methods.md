@@ -101,7 +101,8 @@ Self Organized Map es un tipo de red neuronal artificial capaz de convertir rela
 
 - **features_X**: *(Pandas DataFrame)* Contiene los atributos de los datos (sin longitud ni latitud). *SOM* no trabaja con strings y se recomienda que los datos sean tipo float.
 - **features_position**: *(Pandas DataFrame)* Contiene longitud y latitud de los datos.
-- **som_shape**: *(tupla de ints)* Determina la topología de la red neuronal que usará SOM de la forma (cantidad_filas, cantidad_columnas). Por defecto: (2,2)
+- **n_clusters**: *(int)* Indica la cantidad de clusters que considerará el método para agrupar los datos. Por defecto: 4
+- **som_shape**: *(tupla de ints)* Determina la topología de la red neuronal que usará SOM de la forma (cantidad_filas, cantidad_columnas). Por defecto: (3,3)
 - **sigma**: *(float)* Dispersión de la función de vecindad, debe ser adecuada a la dimensión de SOM utilizada. Por defecto: 0.5
 - **learning_rate**: *(float)* Parámetro dentro del rango [0,1] que corresponde a la cantidad de información inicial que se compartirá entre neuronas en cada iteración del proceso de entrenamiento de la red. Por defecto: 0.5
 - **num_iterations**: *(int)* Cantidad de iteraciones que se realizarán en el proceso de entrenamiento. Por defecto: 100
