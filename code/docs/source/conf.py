@@ -9,7 +9,7 @@
 project = 'SpatialCluster'
 copyright = '2022, Axel Reyes'
 author = 'Axel Reyes'
-release = '0.1'
+release = '1.0'
 
 root_doc = 'index'
 
