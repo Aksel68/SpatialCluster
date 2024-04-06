@@ -114,7 +114,7 @@ Self Organized Map es un tipo de red neuronal artificial capaz de convertir rela
 
 ```
    from SpatialCluster.methods.SOM import SOM_Clustering
-   SOM_areas_to_points, SOM_clusters = SOM_Clustering(features_X, features_position, som_shape = (2,2), sigma=0.5, learning_rate=0.5, num_iterations = 100)
+   SOM_areas_to_points, SOM_clusters = SOM_Clustering(features_X, features_position, som_shape = (3,3), sigma=0.5, learning_rate=0.5, num_iterations = 100)
 ```
 
 TDI
